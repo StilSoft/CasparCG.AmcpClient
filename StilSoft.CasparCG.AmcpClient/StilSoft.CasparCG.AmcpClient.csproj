@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0470180B-AE26-46A9-AF72-D51271124952}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StilSoft.CasparCG.AmcpClient</RootNamespace>
+    <AssemblyName>StilSoft.CasparCG.AmcpClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstracts\Command\AbstractCommand.cs" />
+    <Compile Include="Abstracts\Command\AbstractCommandResponse.cs" />
+    <Compile Include="Abstracts\Command\ICommandPacket.cs" />
+    <Compile Include="Abstracts\Command\ICommandParser.cs" />
+    <Compile Include="Abstracts\Command\ICommandConnection.cs" />
+    <Compile Include="AmcpConnection.cs" />
+    <Compile Include="CommandBuilder\Attributes\CommandBuilderObjectAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\CommandParameterAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Conditions\AbstractPropertyIncludedConditionAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Conditions\AbstractPropertyValueConditionAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Conditions\AbstractPropertyValueOrConditionAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Conditions\IncludeIfEqualAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Conditions\IncludeIfEqualOrAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Conditions\IncludeIfIncludedAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Conditions\IncludeIfNotEqualAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Conditions\IncludeIfNotEqualOrAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Conditions\IncludeIfNotIncludedAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Converters\AbstractValueToStringConverterAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Converters\BooleanToStringAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Converters\EnumToStringAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Converters\NumberToStringCultureAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Converters\ValueToEscapedStringAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Converters\WindowsToUnixPathAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Validations\IsValidFileNameAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Validations\IsValidFullNameAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Validations\IsValidPathAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Validations\RequiredIfEqualAttribute.cs" />
+    <Compile Include="CommandBuilder\CommandStringBuilder.cs" />
+    <Compile Include="CommandBuilder\CommandValidation.cs" />
+    <Compile Include="Commands\AbstractBaseCommand.cs" />
+    <Compile Include="Commands\AbstractChannelCommand.cs" />
+    <Compile Include="Commands\AbstractLayerCommand.cs" />
+    <Compile Include="Commands\Basic\AddCommand.cs" />
+    <Compile Include="Commands\Basic\CallCommand.cs" />
+    <Compile Include="Commands\Basic\ClearCommand.cs" />
+    <Compile Include="Commands\Basic\Common\AbstractSetCommandOption.cs" />
+    <Compile Include="Commands\Basic\Common\AudioLayoutOption.cs" />
+    <Compile Include="Commands\Basic\Common\Direction.cs" />
+    <Compile Include="Commands\Basic\Common\LockAction.cs" />
+    <Compile Include="Commands\Basic\Common\LogCategory.cs" />
+    <Compile Include="Commands\Basic\Common\LogLevel.cs" />
+    <Compile Include="Commands\Basic\Common\Transition.cs" />
+    <Compile Include="Commands\Basic\Common\TransitionType.cs" />
+    <Compile Include="Commands\Basic\Common\VideoModeOption.cs" />
+    <Compile Include="Commands\Basic\LoadBgCommand.cs" />
+    <Compile Include="Commands\Basic\LoadCommand.cs" />
+    <Compile Include="Commands\Basic\LockCommand.cs" />
+    <Compile Include="Commands\Basic\LogCategoryCommand.cs" />
+    <Compile Include="Commands\Basic\LogLevelCommand.cs" />
+    <Compile Include="Commands\Basic\PauseCommand.cs" />
+    <Compile Include="Commands\Basic\PlayCommand.cs" />
+    <Compile Include="Commands\Basic\PrintCommand.cs" />
+    <Compile Include="Commands\Basic\RemoveCommand.cs" />
+    <Compile Include="Commands\Basic\ResumeCommand.cs" />
+    <Compile Include="Commands\Basic\SetCommand.cs" />
+    <Compile Include="Commands\Basic\StopCommand.cs" />
+    <Compile Include="Commands\Basic\SwapCommand.cs" />
+    <Compile Include="Commands\Cg\AbstractCgCommand.cs" />
+    <Compile Include="Commands\Cg\AbstractCgCommandNoCgLayer.cs" />
+    <Compile Include="Commands\Cg\CgAddCommand.cs" />
+    <Compile Include="Commands\Cg\CgClearCommand.cs" />
+    <Compile Include="Commands\Cg\CgInfoCommand.cs" />
+    <Compile Include="Commands\Cg\CgInvokeCommand.cs" />
+    <Compile Include="Commands\Cg\CgNextCommand.cs" />
+    <Compile Include="Commands\Cg\CgPlayCommand.cs" />
+    <Compile Include="Commands\Cg\CgRemoveCommand.cs" />
+    <Compile Include="Commands\Cg\CgStopCommand.cs" />
+    <Compile Include="Commands\Cg\CgUpdateCommand.cs" />
+    <Compile Include="Commands\Cg\Common\TemplateData\AbstractTemplateData.cs" />
+    <Compile Include="Commands\Cg\Common\TemplateData\DataPair.cs" />
+    <Compile Include="Commands\Cg\Common\TemplateData\TemplateDataFromDataFile.cs" />
+    <Compile Include="Commands\Cg\Common\TemplateData\TemplateDataXml.cs" />
+    <Compile Include="Commands\CustomCommand.cs" />
+    <Compile Include="Commands\Data\AbstractDataCommand.cs" />
+    <Compile Include="Commands\Data\Common\Reponse\DataListCommandResponse.cs" />
+    <Compile Include="Commands\Data\Common\Reponse\DataRetrieveCommandResponse.cs" />
+    <Compile Include="Commands\Data\DataListCommand.cs" />
+    <Compile Include="Commands\Data\DataRemoveCommand.cs" />
+    <Compile Include="Commands\Data\DataRetrieveCommand.cs" />
+    <Compile Include="Commands\Data\DataStoreCommand.cs" />
+    <Compile Include="Commands\Mixer\AbstractMixerChannelCommand.cs" />
+    <Compile Include="Commands\Mixer\AbstractMixerLayerCommand.cs" />
+    <Compile Include="Commands\Mixer\ChannelGridCommand.cs" />
+    <Compile Include="Commands\Mixer\Common\BlendMode.cs" />
+    <Compile Include="Commands\Mixer\Common\MixerAnchor.cs" />
+    <Compile Include="Commands\Mixer\Common\MixerChroma.cs" />
+    <Compile Include="Commands\Mixer\Common\MixerClip.cs" />
+    <Compile Include="Commands\Mixer\Common\MixerCrop.cs" />
+    <Compile Include="Commands\Mixer\Common\MixerFill.cs" />
+    <Compile Include="Commands\Mixer\Common\MixerLevels.cs" />
+    <Compile Include="Commands\Mixer\Common\MixerPerspective.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerAnchorGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerBlendGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerBrightnessGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerChromaGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerClipGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerContrastGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerCropGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerFillGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerKeyerGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerLevelsGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerMasterVolumeGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerMipmapGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerOpacityGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerPerspectiveGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerRotationGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerSaturationGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerStraightAlphaOutputGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Response\MixerVolumeGetCommandResponse.cs" />
+    <Compile Include="Commands\Mixer\Common\Transform.cs" />
+    <Compile Include="Commands\Mixer\MixerAnchorGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerAnchorSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerBlendGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerBlendSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerBrightnessGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerBrightnessSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerChromaGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerChromaSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerClearCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerClipGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerClipSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerCommitCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerContrastGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerContrastSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerCropGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerCropSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerFillGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerFillSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerGridCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerKeyerGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerKeyerSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerLevelsGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerLevelsSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerMasterVolumeGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerMasterVolumeSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerMipmapGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerMipmapSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerOpacityGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerOpacitySetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerPerspectiveGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerPerspectiveSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerRotationGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerRotationSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerSaturationGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerSaturationSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerStraightAlphaOutputGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerStraightAlphaOutputSetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerVolumeGetCommand.cs" />
+    <Compile Include="Commands\Mixer\MixerVolumeSetCommand.cs" />
+    <Compile Include="Commands\Query\AbstractInfoCommand.cs" />
+    <Compile Include="Commands\Query\ByeCommand.cs" />
+    <Compile Include="Commands\Query\CinfCommand.cs" />
+    <Compile Include="Commands\Query\ClsCommand.cs" />
+    <Compile Include="Commands\Query\Common\Component.cs" />
+    <Compile Include="Commands\Query\Common\Info\ChannelDelayInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Channel\BackgroundInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Channel\ChannelInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Channel\ConsumerInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Channel\ForegroundInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Channel\LayerInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Channel\MixerInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Channel\OutputInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Channel\ProducerInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Channel\StageInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\ConfigInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\GlInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\LayerDelayInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\PathsInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Queue\QueueInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Queue\QueuesInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Queue\RunningInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\ServerInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\SystemInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Template\ComponentInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Template\InstanceInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Template\KeyFrameInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Template\ParameterInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Template\PropertyInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\Template\TemplateInfo.cs" />
+    <Compile Include="Commands\Query\Common\Info\ThreadInfo.cs" />
+    <Compile Include="Commands\Query\Common\Response\CinfCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\ClsCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\FlsCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\GlInfoCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\InfoChannelCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\InfoChannelDelayCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\InfoConfigCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\InfoLayerCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\InfoLayerDelayCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\InfoPathsCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\InfoQueuesCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\InfoServerCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\InfoSystemCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\InfoTemplateCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\InfoThreadsCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\TlsCommandResponse.cs" />
+    <Compile Include="Commands\Query\Common\Response\VersionCommandResponse.cs" />
+    <Compile Include="Commands\Query\DiagCommand.cs" />
+    <Compile Include="Commands\Query\FlsCommand.cs" />
+    <Compile Include="Commands\Query\GlGcCommand.cs" />
+    <Compile Include="Commands\Query\GlInfoCommand.cs" />
+    <Compile Include="Commands\Query\InfoChannelCommand.cs" />
+    <Compile Include="Commands\Query\InfoChannelDelayCommand.cs" />
+    <Compile Include="Commands\Query\InfoConfigCommand.cs" />
+    <Compile Include="Commands\Query\InfoLayerCommand.cs" />
+    <Compile Include="Commands\Query\InfoLayerDelayCommand.cs" />
+    <Compile Include="Commands\Query\InfoPathsCommand.cs" />
+    <Compile Include="Commands\Query\InfoQueuesCommand.cs" />
+    <Compile Include="Commands\Query\InfoServerCommand.cs" />
+    <Compile Include="Commands\Query\InfoSystemCommand.cs" />
+    <Compile Include="Commands\Query\InfoTemplateCommand.cs" />
+    <Compile Include="Commands\Query\InfoThreadsCommand.cs" />
+    <Compile Include="Commands\Query\KillCommand.cs" />
+    <Compile Include="Commands\Query\RestartCommand.cs" />
+    <Compile Include="Commands\Query\TlsCommand.cs" />
+    <Compile Include="Commands\Query\VersionCommand.cs" />
+    <Compile Include="Commands\Thumbnail\AbstractThumbnailCommand.cs" />
+    <Compile Include="Commands\Thumbnail\Common\Response\ThumbnailListCommandResponse.cs" />
+    <Compile Include="Commands\Thumbnail\Common\Response\ThumbnailRetrieveCommandResponse.cs" />
+    <Compile Include="Commands\Thumbnail\ThumbnailGenerateAllCommand.cs" />
+    <Compile Include="Commands\Thumbnail\ThumbnailGenerateCommand.cs" />
+    <Compile Include="Commands\Thumbnail\ThumbnailListCommand.cs" />
+    <Compile Include="Commands\Thumbnail\ThumbnailRetrieveCommand.cs" />
+    <Compile Include="Common\AmcpPacket.cs" />
+    <Compile Include="Common\AmcpParsedData.cs" />
+    <Compile Include="Common\AmcpParser.cs" />
+    <Compile Include="Common\AmcpResponse.cs" />
+    <Compile Include="Common\AmcpReturnCode.cs" />
+    <Compile Include="Common\Enums\AudioLayout.cs" />
+    <Compile Include="Commands\Query\Common\MediaType.cs" />
+    <Compile Include="Commands\Query\Common\TemplateType.cs" />
+    <Compile Include="Common\Enums\Tween.cs" />
+    <Compile Include="Common\Enums\VideoMode.cs" />
+    <Compile Include="Common\EventsArgs\DataReceivedEventArgs.cs" />
+    <Compile Include="Common\EventsArgs\ParserCompleteEventArgs.cs" />
+    <Compile Include="Common\EventsArgs\ParserErrorEventArgs.cs" />
+    <Compile Include="Common\Exceptions\GeneralServerException.cs" />
+    <Compile Include="Common\CasparFileInfo.cs" />
+    <Compile Include="Commands\Data\Common\DataFileInfo.cs" />
+    <Compile Include="Commands\Query\Common\FontFileInfo.cs" />
+    <Compile Include="Commands\Query\Common\MediaFileInfo.cs" />
+    <Compile Include="Commands\Query\Common\TemplateFileInfo.cs" />
+    <Compile Include="Commands\Thumbnail\Common\ThumbnailFileInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Converter.cs" />
+    <Compile Include="Utils\PathUtils.cs" />
+    <Compile Include="Utils\Serializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StilSoft.Network\StilSoft.Network.csproj">
+      <Project>{b508b90f-1d76-41a6-aa13-1495198d63fa}</Project>
+      <Name>StilSoft.Network</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
