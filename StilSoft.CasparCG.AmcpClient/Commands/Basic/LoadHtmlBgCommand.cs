@@ -11,9 +11,9 @@
 
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes;
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Converters;
+using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Validations;
 using StilSoft.CasparCG.AmcpClient.Commands.Basic.Common;
 using System.ComponentModel.DataAnnotations;
-using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Validations;
 
 namespace StilSoft.CasparCG.AmcpClient.Commands.Basic
 {

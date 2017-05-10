@@ -28,7 +28,7 @@ namespace StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Converters
         public override string GetValue(object value)
         {
             if (!(value is bool))
-                throw new InvalidOperationException($"\'{nameof(BooleanToStringAttribute)}\' attribute can be used only on 'bool' value type properties.");
+                throw new InvalidOperationException($"'{nameof(BooleanToStringAttribute)}' attribute can be used only on 'bool' value type properties.");
 
             return (bool)value ? TrueValue : FalseValue;
         }

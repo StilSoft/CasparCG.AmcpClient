@@ -28,13 +28,13 @@ namespace StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Validations
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var errorMessage = $"Property \'{validationContext.MemberName}\' value is not valid file name.";
+            var errorMessage = $"Property '{validationContext.MemberName}' value is not valid file name.";
 
             if (string.IsNullOrEmpty(value.ToString()))
                 return _allowNullorEmptyStrings ? ValidationResult.Success : new ValidationResult(errorMessage);
 
             if (!(value is string))
-               throw new InvalidOperationException($"\'{nameof(IsValidFileNameAttribute)}\' attribute can be used only on 'string' value type properties.");
+               throw new InvalidOperationException($"'{nameof(IsValidFileNameAttribute)}' attribute can be used only on 'string' value type properties.");
 
             return PathUtils.IsValidFileName(value.ToString()) ? ValidationResult.Success : new ValidationResult(errorMessage);
         }

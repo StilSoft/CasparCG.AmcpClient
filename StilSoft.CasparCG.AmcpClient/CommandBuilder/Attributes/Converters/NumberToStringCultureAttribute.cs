@@ -29,7 +29,7 @@ namespace StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Converters
         public override string GetValue(object value)
         {
             if (!IsNumber(value))
-                throw new InvalidOperationException($"\'{nameof(NumberToStringCultureAttribute)}\' attribute can be used only on 'numeric' value type properties.");
+                throw new InvalidOperationException($"'{nameof(NumberToStringCultureAttribute)}' attribute can be used only on 'numeric' value type properties.");
 
             return double.Parse(value.ToString()).ToString(_culture);
         }

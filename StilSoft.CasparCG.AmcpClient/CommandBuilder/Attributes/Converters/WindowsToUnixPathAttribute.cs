@@ -19,7 +19,7 @@ namespace StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Converters
         public override string GetValue(object value)
         {
             if (!(value is string))
-                throw new InvalidOperationException($"\'{nameof(WindowsToUnixPathAttribute)}\' attribute can be used only on 'string' value type properties.");
+                throw new InvalidOperationException($"'{nameof(WindowsToUnixPathAttribute)}' attribute can be used only on 'string' value type properties.");
 
             return PathUtils.WindowsToUnixPath(value.ToString());
         }

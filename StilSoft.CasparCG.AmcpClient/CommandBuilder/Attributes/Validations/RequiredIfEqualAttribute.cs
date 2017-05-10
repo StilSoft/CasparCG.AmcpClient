@@ -35,10 +35,10 @@ namespace StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Validations
             var property = validationContext.ObjectType.GetProperty(_propertyName);
 
             if (property == null)
-                throw new InvalidOperationException($"Property \'{_propertyName}\' requested by \'{nameof(RequiredIfEqualAttribute)}\' attribute on \'{validationContext.MemberName}\' property not found.");
+                throw new InvalidOperationException($"Property '{_propertyName}' requested by '{nameof(RequiredIfEqualAttribute)}' attribute on '{validationContext.MemberName}' property not found.");
 
             if (validationContext.MemberName.Equals(_propertyName))
-                throw new InvalidOperationException($"Cannot use \'{nameof(RequiredIfEqualAttribute)}\' attribute on \'{validationContext.MemberName}\' property to check property it self.");
+                throw new InvalidOperationException($"Cannot use '{nameof(RequiredIfEqualAttribute)}' attribute on '{validationContext.MemberName}' property to check property it self.");
 
             var propertyValue = property.GetValue(validationContext.ObjectInstance);
 

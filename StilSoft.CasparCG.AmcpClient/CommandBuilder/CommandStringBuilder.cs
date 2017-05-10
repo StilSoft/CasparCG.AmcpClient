@@ -138,10 +138,10 @@ namespace StilSoft.CasparCG.AmcpClient.CommandBuilder
                 var property = obj.GetType().GetProperty(propertyAttribute.PropertyName);
 
                 if (property == null)
-                    throw new InvalidOperationException($"Property \'{propertyAttribute.PropertyName}\' requested by \'{propertyAttribute.GetType().Name}\' attribute on \'{propertyInfo.Name}\' property not found.");
+                    throw new InvalidOperationException($"Property '{propertyAttribute.PropertyName}' requested by '{propertyAttribute.GetType().Name}' attribute on '{propertyInfo.Name}' property not found.");
 
                 if (property.Name.Equals(propertyInfo.Name))
-                    throw new InvalidOperationException($"Cannot use \'{propertyAttribute.GetType().Name}\' attribute on \'{propertyInfo.Name}\' property to check property it self.");
+                    throw new InvalidOperationException($"Cannot use '{propertyAttribute.GetType().Name}' attribute on '{propertyInfo.Name}' property to check property it self.");
 
                 var canIncludeProperty = CanIncludePropertyRecursive(obj, property, deepLevel);
 
@@ -161,7 +161,7 @@ namespace StilSoft.CasparCG.AmcpClient.CommandBuilder
                 var property = obj.GetType().GetProperty(propertyAttribute.PropertyName);
 
                 if (property == null)
-                    throw new InvalidOperationException($"Property \'{propertyAttribute.PropertyName}\' requested by \'{propertyAttribute.GetType().Name}\' attribute on \'{propertyInfo.Name}\' property not found.");
+                    throw new InvalidOperationException($"Property '{propertyAttribute.PropertyName}' requested by '{propertyAttribute.GetType().Name}' attribute on '{propertyInfo.Name}' property not found.");
 
                 // Get property value and check it
                 if (propertyAttribute.IsTrue(property.GetValue(obj)))

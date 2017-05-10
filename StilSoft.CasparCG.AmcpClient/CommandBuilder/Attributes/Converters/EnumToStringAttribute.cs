@@ -23,19 +23,19 @@ namespace StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Converters
         public override string GetValue(object value)
         {
             if (!(value is Enum))
-                throw new InvalidOperationException($"\'{nameof(EnumToStringAttribute)}\' attribute can be used only on 'Enum' type properties.");
+                throw new InvalidOperationException($"'{nameof(EnumToStringAttribute)}' attribute can be used only on 'Enum' type properties.");
 
             var fieldInfo = value.GetType().GetField(value.ToString());
 
             if (fieldInfo == null)
-                throw new ArgumentException($"\'{nameof(EnumToStringAttribute)}\' attribute can not found value \'{value}\' in enum \'{value.GetType().Name}\'.");
+                throw new ArgumentException($"'{nameof(EnumToStringAttribute)}' attribute can not found value '{value}' in enum '{value.GetType().Name}'.");
 
             // Get "DescriptionAttribute" attribute from Enum and return Description value
             var descriptionAttribute = fieldInfo.GetCustomAttribute<DescriptionAttribute>();
 
             if (descriptionAttribute == null)
                 return value.ToString();
-                //throw new InvalidOperationException ($"\'{nameof(EnumToStringAttribute)}\' attribute can not found \'{nameof(DescriptionAttribute)}\' attribute on enum \'{value.GetType().Name}\' value \'{value}\'.");
+                //throw new InvalidOperationException ($"'{nameof(EnumToStringAttribute)}' attribute can not found '{nameof(DescriptionAttribute)}' attribute on enum '{value.GetType().Name}' value '{value}'.");
 
             return descriptionAttribute.Description;
         }

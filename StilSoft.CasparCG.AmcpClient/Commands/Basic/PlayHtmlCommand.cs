@@ -9,7 +9,6 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-using System.ComponentModel.DataAnnotations;
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes;
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Conditions;
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Converters;

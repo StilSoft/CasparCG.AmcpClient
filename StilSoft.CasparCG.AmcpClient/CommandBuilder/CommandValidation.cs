@@ -42,7 +42,7 @@ namespace StilSoft.CasparCG.AmcpClient.CommandBuilder
                 if (property.PropertyType.IsValueType && Nullable.GetUnderlyingType(property.PropertyType) == null)
                 {
                     if (throwException)
-                        throw new InvalidOperationException($"\'{property.Name}\' property must be nullable.");
+                        throw new InvalidOperationException($"'{property.Name}' property must be nullable.");
 
                     return false;
                 }

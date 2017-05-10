@@ -17,23 +17,23 @@ namespace StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Validations
     [AttributeUsage(AttributeTargets.Property)]
     internal class IsValidUrlAttribute : ValidationAttribute
     {
-        private readonly bool _isNullOrEmptyValid;
+        private readonly bool _allowNullorEmptyStrings;
 
 
-        public IsValidUrlAttribute(bool isNullOrEmptyValid = true)
+        public IsValidUrlAttribute(bool allowNullorEmptyStrings = true)
         {
-            _isNullOrEmptyValid = isNullOrEmptyValid;
+            _allowNullorEmptyStrings = allowNullorEmptyStrings;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var errorMessage = $"Property \'{validationContext.MemberName}\' value is not valid url.";
+            var errorMessage = $"Property '{validationContext.MemberName}' value is not valid url.";
 
             if (string.IsNullOrEmpty(value.ToString()))
-                return _isNullOrEmptyValid ? ValidationResult.Success : new ValidationResult(errorMessage);
+                return _allowNullorEmptyStrings ? ValidationResult.Success : new ValidationResult(errorMessage);
 
             if (!(value is string))
-                throw new InvalidOperationException($"\'{nameof(IsValidPathAttribute)}\' attribute can be used only on 'string' value type properties.");
+                throw new InvalidOperationException($"'{nameof(IsValidPathAttribute)}' attribute can be used only on 'string' value type properties.");
 
             Uri url;
 
