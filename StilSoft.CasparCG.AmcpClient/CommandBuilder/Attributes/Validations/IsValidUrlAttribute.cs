@@ -9,46 +9,35 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-using StilSoft.CasparCG.AmcpClient.Common;
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Validations
 {
     [AttributeUsage(AttributeTargets.Property)]
-    internal class IsValidFullNameAttribute : ValidationAttribute
+    internal class IsValidUrlAttribute : ValidationAttribute
     {
-        private readonly bool _isNullValid;
+        private readonly bool _isNullOrEmptyValid;
 
 
-        public IsValidFullNameAttribute(bool isNullValid = true)
+        public IsValidUrlAttribute(bool isNullOrEmptyValid = true)
         {
-            _isNullValid = isNullValid;
+            _isNullOrEmptyValid = isNullOrEmptyValid;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var errorMessage = $"Property \'{validationContext.MemberName}\' value is not valid full name.";
+            var errorMessage = $"Property \'{validationContext.MemberName}\' value is not valid url.";
 
-            if (value == null)
-                return _isNullValid ? ValidationResult.Success : new ValidationResult(errorMessage);
+            if (string.IsNullOrEmpty(value.ToString()))
+                return _isNullOrEmptyValid ? ValidationResult.Success : new ValidationResult(errorMessage);
 
             if (!(value is string))
                 throw new InvalidOperationException($"\'{nameof(IsValidPathAttribute)}\' attribute can be used only on 'string' value type properties.");
 
-            try
-            {
-                if (!string.IsNullOrWhiteSpace(value.ToString()))
-                {
-                    var dummy = new CasparFileInfo(value.ToString());
-                }
-            }
-            catch
-            {
-                return new ValidationResult(errorMessage);
-            }
+            Uri url;
 
-            return ValidationResult.Success;
+            return Uri.TryCreate(value.ToString(), UriKind.Absolute, out url) ? ValidationResult.Success : new ValidationResult(errorMessage);
         }
     }
 }

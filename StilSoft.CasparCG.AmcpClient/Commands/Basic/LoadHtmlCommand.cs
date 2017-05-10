@@ -12,6 +12,7 @@
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes;
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Converters;
 using System.ComponentModel.DataAnnotations;
+using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Validations;
 
 namespace StilSoft.CasparCG.AmcpClient.Commands.Basic
 {
@@ -37,7 +38,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Basic
         internal string SubCommand { get; } = "[HTML]";
 
         [Required]
-        [Url]
+        [IsValidUrl]
         [ValueToEscapedString]
         [CommandParameter("\"{0}\"")]
         public string Url { get; set; }

@@ -13,6 +13,7 @@ using System.ComponentModel.DataAnnotations;
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes;
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Conditions;
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Converters;
+using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Validations;
 using StilSoft.CasparCG.AmcpClient.Commands.Basic.Common;
 
 namespace StilSoft.CasparCG.AmcpClient.Commands.Basic
@@ -52,10 +53,11 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Basic
 
         internal override string CommandName { get; } = "PLAY";
 
+        [IncludeIfIncluded(nameof(Url))]
         [CommandParameter(3)]
         internal string SubCommand { get; } = "[HTML]";
 
-        [Url]
+        [IsValidUrl]
         [ValueToEscapedString]
         [CommandParameter("\"{0}\"")]
         public string Url { get; set; }

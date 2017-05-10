@@ -62,6 +62,7 @@
     <Compile Include="CommandBuilder\Attributes\Validations\IsValidFileNameAttribute.cs" />
     <Compile Include="CommandBuilder\Attributes\Validations\IsValidFullNameAttribute.cs" />
     <Compile Include="CommandBuilder\Attributes\Validations\IsValidPathAttribute.cs" />
+    <Compile Include="CommandBuilder\Attributes\Validations\IsValidUrlAttribute.cs" />
     <Compile Include="CommandBuilder\Attributes\Validations\RequiredIfEqualAttribute.cs" />
     <Compile Include="CommandBuilder\CommandStringBuilder.cs" />
     <Compile Include="CommandBuilder\CommandValidation.cs" />
