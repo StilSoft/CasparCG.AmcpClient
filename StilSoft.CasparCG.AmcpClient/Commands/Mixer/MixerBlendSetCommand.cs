@@ -41,12 +41,16 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         [CommandParameter]
         public BlendMode? BlendMode { get; set; }
 
+        [CommandParameter]
+        public Transform Transform { get; set; }
 
-        public MixerBlendSetCommand(int? channel = null, int? layer = null, BlendMode? blendMode = null)
+
+        public MixerBlendSetCommand(int? channel = null, int? layer = null, BlendMode? blendMode = null, Transform transform = null)
         {
             Channel = channel;
             Layer = layer;
             BlendMode = blendMode;
+            Transform = transform;
         }
     }
 }

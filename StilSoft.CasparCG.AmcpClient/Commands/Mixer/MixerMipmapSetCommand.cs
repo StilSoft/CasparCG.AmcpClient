@@ -12,6 +12,7 @@
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes;
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Converters;
 using System.ComponentModel.DataAnnotations;
+using StilSoft.CasparCG.AmcpClient.Commands.Mixer.Common;
 
 namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
 {
@@ -39,12 +40,16 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         [CommandParameter]
         public bool? EnableMipmap { get; set; }
 
+        [CommandParameter]
+        public Transform Transform { get; set; }
 
-        public MixerMipmapSetCommand(int? channel = null, int? layer = null, bool? enableMipmap = null)
+
+        public MixerMipmapSetCommand(int? channel = null, int? layer = null, bool? enableMipmap = null, Transform transform = null)
         {
             Channel = channel;
             Layer = layer;
             EnableMipmap = enableMipmap;
+            Transform = transform;
         }
     }
 }
