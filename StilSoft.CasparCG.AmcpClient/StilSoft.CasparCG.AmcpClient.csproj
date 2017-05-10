@@ -80,12 +80,15 @@
     <Compile Include="Commands\Basic\Common\Transition.cs" />
     <Compile Include="Commands\Basic\Common\TransitionType.cs" />
     <Compile Include="Commands\Basic\Common\VideoModeOption.cs" />
+    <Compile Include="Commands\Basic\LoadHtmlCommand.cs" />
+    <Compile Include="Commands\Basic\LoadHtmlBgCommand.cs" />
     <Compile Include="Commands\Basic\LoadBgCommand.cs" />
     <Compile Include="Commands\Basic\LoadCommand.cs" />
     <Compile Include="Commands\Basic\LockCommand.cs" />
     <Compile Include="Commands\Basic\LogCategoryCommand.cs" />
     <Compile Include="Commands\Basic\LogLevelCommand.cs" />
     <Compile Include="Commands\Basic\PauseCommand.cs" />
+    <Compile Include="Commands\Basic\PlayHtmlCommand.cs" />
     <Compile Include="Commands\Basic\PlayCommand.cs" />
     <Compile Include="Commands\Basic\PrintCommand.cs" />
     <Compile Include="Commands\Basic\RemoveCommand.cs" />
