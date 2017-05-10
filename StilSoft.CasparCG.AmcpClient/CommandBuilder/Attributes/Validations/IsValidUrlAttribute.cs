@@ -29,7 +29,7 @@ namespace StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Validations
         {
             var errorMessage = $"Property '{validationContext.MemberName}' value is not valid url.";
 
-            if (string.IsNullOrEmpty(value.ToString()))
+            if (string.IsNullOrEmpty(value?.ToString()))
                 return _allowNullorEmptyStrings ? ValidationResult.Success : new ValidationResult(errorMessage);
 
             if (!(value is string))
