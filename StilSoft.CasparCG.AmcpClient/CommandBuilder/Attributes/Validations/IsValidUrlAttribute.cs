@@ -35,9 +35,7 @@ namespace StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Validations
             if (!(value is string))
                 throw new InvalidOperationException($"'{nameof(IsValidPathAttribute)}' attribute can be used only on 'string' value type properties.");
 
-            Uri url;
-
-            return Uri.TryCreate(value.ToString(), UriKind.Absolute, out url) ? ValidationResult.Success : new ValidationResult(errorMessage);
+            return Uri.IsWellFormedUriString(value.ToString(), UriKind.Absolute) ? ValidationResult.Success : new ValidationResult(errorMessage);
         }
     }
 }
