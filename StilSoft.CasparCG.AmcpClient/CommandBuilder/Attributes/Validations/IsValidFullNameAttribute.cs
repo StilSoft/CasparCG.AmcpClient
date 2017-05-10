@@ -18,20 +18,20 @@ namespace StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Validations
     [AttributeUsage(AttributeTargets.Property)]
     internal class IsValidFullNameAttribute : ValidationAttribute
     {
-        private readonly bool _isNullValid;
+        private readonly bool _allowNullorEmptyStrings;
 
 
-        public IsValidFullNameAttribute(bool isNullValid = true)
+        public IsValidFullNameAttribute(bool allowNullorEmptyStrings = true)
         {
-            _isNullValid = isNullValid;
+            _allowNullorEmptyStrings = allowNullorEmptyStrings;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var errorMessage = $"Property \'{validationContext.MemberName}\' value is not valid full name.";
 
-            if (value == null)
-                return _isNullValid ? ValidationResult.Success : new ValidationResult(errorMessage);
+            if (string.IsNullOrEmpty(value.ToString()))
+                return _allowNullorEmptyStrings ? ValidationResult.Success : new ValidationResult(errorMessage);
 
             if (!(value is string))
                 throw new InvalidOperationException($"\'{nameof(IsValidPathAttribute)}\' attribute can be used only on 'string' value type properties.");

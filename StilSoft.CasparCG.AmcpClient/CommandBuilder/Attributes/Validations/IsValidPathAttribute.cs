@@ -18,20 +18,20 @@ namespace StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Validations
     [AttributeUsage(AttributeTargets.Property)]
     internal class IsValidPathAttribute : ValidationAttribute
     {
-        private readonly bool _isNullValid;
+        private readonly bool _allowNullorEmptyStrings;
 
 
-        public IsValidPathAttribute(bool isNullValid = true)
+        public IsValidPathAttribute(bool allowNullorEmptyStrings = true)
         {
-            _isNullValid = isNullValid;
+            _allowNullorEmptyStrings = allowNullorEmptyStrings;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var errorMessage = $"Property \'{validationContext.MemberName}\' value is not valid path.";
 
-            if (value == null)
-                return _isNullValid ? ValidationResult.Success : new ValidationResult(errorMessage);
+            if (string.IsNullOrEmpty(value.ToString()))
+                return _allowNullorEmptyStrings ? ValidationResult.Success : new ValidationResult(errorMessage);
 
             if (!(value is string))
                throw new InvalidOperationException($"\'{nameof(IsValidPathAttribute)}\' attribute can be used only on 'string' value type properties.");
