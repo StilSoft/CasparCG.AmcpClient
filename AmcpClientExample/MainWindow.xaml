@@ -133,6 +133,42 @@
                         </Grid>
                     </GroupBox>
 
+                    <GroupBox Header="Mixer Chroma" Margin="10,204,204,32">
+                        <Grid>
+                            <TextBlock HorizontalAlignment="Left" Margin="34,14,0,0" TextWrapping="Wrap" Text="Target Hue" VerticalAlignment="Top"/>
+                            <Slider x:Name="MixerChromaTargetHueSlider" HorizontalAlignment="Left" Margin="99,14,0,0" VerticalAlignment="Top" Width="128" ValueChanged="MixerChromaSlider_ValueChanged" Minimum="0" Maximum="360" SmallChange="1" LargeChange="10" IsSnapToTickEnabled="True" TickFrequency="1" Value="120"/>
+                            <TextBlock x:Name="MixerChromaTargetHueTextBlock" HorizontalAlignment="Left" Margin="238,14,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+
+                            <TextBlock HorizontalAlignment="Left" Margin="36,32,0,0" TextWrapping="Wrap" Text="Hue Width" VerticalAlignment="Top"/>
+                            <Slider x:Name="MixerChromaHueWidthSlider" HorizontalAlignment="Left" Margin="99,32,0,0" VerticalAlignment="Top" Width="128" ValueChanged="MixerChromaSlider_ValueChanged" Minimum="0" Maximum="1" SmallChange="0.01" LargeChange="0.1" IsSnapToTickEnabled="True" TickFrequency="0.01" Value="0.1"/>
+                            <TextBlock x:Name="MixerChromaHueWidthTextBlock" HorizontalAlignment="Left" Margin="238,32,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+
+                            <TextBlock HorizontalAlignment="Left" Margin="15,50,0,0" TextWrapping="Wrap" Text="Min Saturation" VerticalAlignment="Top"/>
+                            <Slider x:Name="MixerChromaMinSaturationSlider" HorizontalAlignment="Left" Margin="99,50,0,0" VerticalAlignment="Top" Width="128" ValueChanged="MixerChromaSlider_ValueChanged" Minimum="0" Maximum="1" SmallChange="0.01" LargeChange="0.1" IsSnapToTickEnabled="True" TickFrequency="0.01"/>
+                            <TextBlock x:Name="MixerChromaMinSaturationTextBlock" HorizontalAlignment="Left" Margin="238,50,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+
+                            <TextBlock HorizontalAlignment="Left" Margin="14,68,0,0" TextWrapping="Wrap" Text="Min Brightness" VerticalAlignment="Top"/>
+                            <Slider x:Name="MixerChromaMinBrightnessSlider" HorizontalAlignment="Left" Margin="99,68,0,0" VerticalAlignment="Top" Width="128" ValueChanged="MixerChromaSlider_ValueChanged" Minimum="0" Maximum="1" SmallChange="0.01" LargeChange="0.1" IsSnapToTickEnabled="True" TickFrequency="0.01"/>
+                            <TextBlock x:Name="MixerChromaMinBrightnessTextBlock" HorizontalAlignment="Left" Margin="238,68,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+
+                            <TextBlock HorizontalAlignment="Left" Margin="48,86,0,0" TextWrapping="Wrap" Text="Softness" VerticalAlignment="Top"/>
+                            <Slider x:Name="MixerChromaSoftnessSlider" HorizontalAlignment="Left" Margin="99,86,0,0" VerticalAlignment="Top" Width="128" ValueChanged="MixerChromaSlider_ValueChanged" Minimum="0" Maximum="1" SmallChange="0.01" LargeChange="0.1" IsSnapToTickEnabled="True" TickFrequency="0.01" Value="0.1"/>
+                            <TextBlock x:Name="MixerChromaSoftnessTextBlock" HorizontalAlignment="Left" Margin="238,86,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+
+                            <TextBlock HorizontalAlignment="Left" Margin="19,102,0,0" TextWrapping="Wrap" Text="Spill Suppress" VerticalAlignment="Top"/>
+                            <Slider x:Name="MixerChromaSpillSuppressSlider" HorizontalAlignment="Left" Margin="99,104,0,0" VerticalAlignment="Top" Width="128" ValueChanged="MixerChromaSlider_ValueChanged" Minimum="0" Maximum="180" SmallChange="1" LargeChange="5" IsSnapToTickEnabled="True" TickFrequency="1"/>
+                            <TextBlock x:Name="MixerChromaSpillSuppressTextBlock" HorizontalAlignment="Left" Margin="238,104,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+
+                            <TextBlock HorizontalAlignment="Left" Margin="22,122,0,0" TextWrapping="Wrap" Text="Spill Sup. Sat." VerticalAlignment="Top"/>
+                            <Slider x:Name="MixerChromaSpillSuppressSaturationSlider" HorizontalAlignment="Left" Margin="99,122,0,0" VerticalAlignment="Top" Width="128" ValueChanged="MixerChromaSlider_ValueChanged" Minimum="0" Maximum="1" SmallChange="0.01" LargeChange="0.1" IsSnapToTickEnabled="True" TickFrequency="0.01"/>
+                            <TextBlock x:Name="MixerChromaSpillSuppressSaturationTextBlock" HorizontalAlignment="Left" Margin="238,122,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
+
+                            <CheckBox x:Name="MixerChromaEnableCheckBox" Content="Enable Chroma" HorizontalAlignment="Left" Margin="22,147,0,0" VerticalAlignment="Top" Checked="MixerChromaCheckBox_Changed" Unchecked="MixerChromaCheckBox_Changed"/>
+                            
+                            <CheckBox x:Name="MixerChromaShowMaskCheckBox" Content="Show Mask" HorizontalAlignment="Left" Margin="147,147,0,0" VerticalAlignment="Top" Checked="MixerChromaCheckBox_Changed" Unchecked="MixerChromaCheckBox_Changed"/>
+                        </Grid>
+                    </GroupBox>
+
                     <GroupBox Header="Master Volume" Margin="295,10,10,366">
                         <Grid>
                             <Slider x:Name="VolumeSlider" HorizontalAlignment="Left" Margin="8,10,0,0" VerticalAlignment="Top" Width="125" RenderTransformOrigin="0.5,0.5" Maximum="2" SmallChange="0.01" Value="1" IsSnapToTickEnabled="True" ValueChanged="VolumeSlider_ValueChanged" LargeChange="0.1" TickFrequency="0.01"/>

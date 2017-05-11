@@ -382,26 +382,6 @@ namespace AmcpClientExample
 
         #region EXAMPLE 3
 
-        private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            if (!IsLoaded || !_connection.IsConnected())
-                return;
-
-            // Set master volume
-            new MixerMasterVolumeSetCommand(_channel, VolumeSlider.Value).ExecuteAsync(_connection).ContinueWith(task =>
-            {
-                if (task.Status == TaskStatus.RanToCompletion)
-                {
-                    // Get master volume
-                    new MixerMasterVolumeGetCommand(_channel).ExecuteAsync(_connection).ContinueWith(tesk2 =>
-                    {
-                        if (tesk2.Status == TaskStatus.RanToCompletion)
-                            VolumePercentageTextBlock.Text = $"{Math.Round(tesk2.Result.MasterVolume / 1 * 100, 0)} %";
-                    });
-                }
-            }, TaskScheduler.FromCurrentSynchronizationContext());
-        }
-
         private void MixerPerspectiveSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (!IsLoaded || !_connection.IsConnected())
@@ -438,6 +418,74 @@ namespace AmcpClientExample
                             MixerPerspectiveBottomLeftXTextBlock.Text = perspective2.BottomLeftX.GetValueOrDefault().ToString("0.00");
                             MixerPerspectiveBottomLeftYTextBlock.Text = perspective2.BottomLeftY.GetValueOrDefault().ToString("0.00");
                         }
+                    });
+                }
+            }, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+
+
+        private void MixerChromaSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (!IsLoaded || !_connection.IsConnected())
+                return;
+
+            var chroma = new MixerChroma
+            {
+                TargetHue = MixerChromaTargetHueSlider.Value,
+                HueWidth = MixerChromaHueWidthSlider.Value,
+                MinSaturation = MixerChromaMinSaturationSlider.Value,
+                MinBrightness = MixerChromaMinBrightnessSlider.Value,
+                Softness = MixerChromaSoftnessSlider.Value,
+                SpillSuppress = MixerChromaSpillSuppressSlider.Value,
+                SpillSuppressSaturation = MixerChromaSpillSuppressSaturationSlider.Value,
+                ShowMask = MixerChromaShowMaskCheckBox.IsChecked
+            };
+
+            new MixerChromaSetCommand(_channel, _layer, MixerChromaEnableCheckBox.IsChecked, chroma).ExecuteAsync(_connection).ContinueWith(task =>
+            {
+                if (task.Status == TaskStatus.RanToCompletion)
+                {
+                    new MixerChromaGetCommand(_channel, _layer).ExecuteAsync(_connection).ContinueWith(task2 =>
+                    {
+                        if (task2.Status == TaskStatus.RanToCompletion)
+                        {
+                            var chroma2 = task2.Result.Chroma;
+
+                            MixerChromaTargetHueTextBlock.Text = chroma2.TargetHue.GetValueOrDefault().ToString("000");
+                            MixerChromaHueWidthTextBlock.Text = chroma2.HueWidth.GetValueOrDefault().ToString("0.00"); ;
+                            MixerChromaMinSaturationTextBlock.Text = chroma2.MinSaturation.GetValueOrDefault().ToString("0.00");
+                            MixerChromaMinBrightnessTextBlock.Text = chroma2.MinBrightness.GetValueOrDefault().ToString("0.00");
+                            MixerChromaSoftnessTextBlock.Text = chroma2.Softness.GetValueOrDefault().ToString("0.00");
+                            MixerChromaSpillSuppressTextBlock.Text = chroma2.SpillSuppress.GetValueOrDefault().ToString("000");
+                            MixerChromaSpillSuppressSaturationTextBlock.Text = chroma2.SpillSuppressSaturation.GetValueOrDefault().ToString("0.00");
+                            MixerChromaShowMaskCheckBox.IsChecked = chroma2.ShowMask.GetValueOrDefault();
+                            MixerChromaEnableCheckBox.IsChecked = task2.Result.IsChromaEnabled;
+                        }
+                    });
+                }
+            }, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+
+        private void MixerChromaCheckBox_Changed(object sender, RoutedEventArgs e)
+        {
+            MixerChromaSlider_ValueChanged(null, null);
+        }
+
+        private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (!IsLoaded || !_connection.IsConnected())
+                return;
+
+            // Set master volume
+            new MixerMasterVolumeSetCommand(_channel, VolumeSlider.Value).ExecuteAsync(_connection).ContinueWith(task =>
+            {
+                if (task.Status == TaskStatus.RanToCompletion)
+                {
+                    // Get master volume
+                    new MixerMasterVolumeGetCommand(_channel).ExecuteAsync(_connection).ContinueWith(tesk2 =>
+                    {
+                        if (tesk2.Status == TaskStatus.RanToCompletion)
+                            VolumePercentageTextBlock.Text = $"{Math.Round(tesk2.Result.MasterVolume / 1 * 100, 0)} %";
                     });
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());
