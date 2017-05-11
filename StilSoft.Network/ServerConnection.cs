@@ -31,6 +31,9 @@ namespace StilSoft.Network
         private int _reconnectAttemptsCounter;
         private CancellationTokenSource _receiveCancellationTokenSource;
         private readonly ManualResetEvent _sendReceiveDataEvent;
+        private bool _keepAliveEnable;
+        private int _keepAliveTime = 1000;
+        private int _keepAliveInterval = 100;
 
         public event EventHandler<ConnectionStateChangedEventArgs> ConnectionStateChanged;
         public event EventHandler<DataReceivedEventArgs> DataReceived;
@@ -52,6 +55,39 @@ namespace StilSoft.Network
             set { _autoReconnectTimer.Interval = value; }
         }
         public int ReconnectAttempts { get; set; } = 10;
+
+        public bool KeepAliveEnable
+        {
+            get { return _keepAliveEnable; }
+            set
+            {
+                _keepAliveEnable = value;
+
+                KeepAlive(KeepAliveEnable, KeepAliveTime, KeepAliveInterval);
+            }
+        }
+
+        public int KeepAliveTime
+        {
+            get { return _keepAliveTime; }
+            set
+            {
+                _keepAliveTime = value;
+
+                KeepAlive(KeepAliveEnable, KeepAliveTime, KeepAliveInterval);
+            }
+        }
+
+        public int KeepAliveInterval
+        {
+            get { return _keepAliveInterval; }
+            set
+            {
+                _keepAliveInterval = value;
+
+                KeepAlive(KeepAliveEnable, KeepAliveTime, KeepAliveInterval);
+            }
+        }
 
 
         public ServerConnection()
@@ -129,7 +165,7 @@ namespace StilSoft.Network
                     NoDelay = true
                 };
 
-                KeepAlive(true, 500, 300);
+                KeepAlive(KeepAliveEnable, KeepAliveTime, KeepAliveInterval);
 
                 try
                 {
@@ -361,6 +397,12 @@ namespace StilSoft.Network
 
         private void KeepAlive(bool enable, int keepAliveTime, int keepAliveInterval)
         {
+            if (keepAliveTime <= 0)
+                throw new ArgumentOutOfRangeException(nameof(keepAliveTime));
+
+            if (keepAliveInterval <= 0)
+                throw new ArgumentOutOfRangeException(nameof(keepAliveInterval));
+
             var size = Marshal.SizeOf(new uint());
             var values = new byte[size * 3];
 

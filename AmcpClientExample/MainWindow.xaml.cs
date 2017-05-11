@@ -47,7 +47,8 @@ namespace AmcpClientExample
             {
                 AutoConnect = true,
                 AutoReconnect = true,
-                ReconnectAttempts = 5
+                ReconnectAttempts = 5,
+                KeepAliveEnable = true
             };
 
             _connection.ConnectionStateChanged += (s, e) =>
