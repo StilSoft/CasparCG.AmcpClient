@@ -73,9 +73,11 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Basic
         [CommandParameter]
         public Transition Transition { get; set; }
 
+        [Range(1, int.MaxValue)]
         [CommandParameter("SEEK {0}")]
         public int? Seek { get; set; }
 
+        [Range(1, int.MaxValue)]
         [CommandParameter("LENGTH {0}")]
         public int? Length { get; set; }
 
