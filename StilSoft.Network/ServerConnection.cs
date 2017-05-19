@@ -34,6 +34,7 @@ namespace StilSoft.Network
         private bool _keepAliveEnable;
         private int _keepAliveTime = 1000;
         private int _keepAliveInterval = 100;
+        private bool _externalDisconnectCall;
 
         public event EventHandler<ConnectionStateChangedEventArgs> ConnectionStateChanged;
         public event EventHandler<DataReceivedEventArgs> DataReceived;
@@ -117,7 +118,7 @@ namespace StilSoft.Network
                 return;
 
             if (disposing)
-                Disconnect();
+                DisconnectInternal();
 
             _disposed = true;
         }
@@ -155,7 +156,7 @@ namespace StilSoft.Network
                 Hostname = hostname;
                 Port = port;
 
-                Disconnect();
+                DisconnectInternal();
 
                 _client = new TcpClient
                 {
@@ -178,7 +179,7 @@ namespace StilSoft.Network
                 }
                 catch (Exception ex)
                 {
-                    Disconnect();
+                    DisconnectInternal();
 
                     if (ex is AggregateException && ex.InnerException is SocketException)
                         throw ex.InnerException;
@@ -188,11 +189,12 @@ namespace StilSoft.Network
 
                 if (!IsConnected())
                 {
-                    Disconnect();
+                    DisconnectInternal();
 
                     throw new InvalidOperationException("Unable to connect.");
                 }
 
+                _externalDisconnectCall = false;
                 _reconnectAttemptsCounter = ReconnectAttempts;
 
                 StartReceiveTask();
@@ -207,6 +209,13 @@ namespace StilSoft.Network
         }
 
         public void Disconnect()
+        {
+            _externalDisconnectCall = true;
+
+            DisconnectInternal();
+        }
+
+        private void DisconnectInternal()
         {
             lock (_connectionLock)
             {
@@ -328,7 +337,7 @@ namespace StilSoft.Network
                     var totalBytesReceived = _client.Client.Receive(receiveBuffer);
 
                     if (totalBytesReceived == 0)
-                        throw new InvalidOperationException("Received zero bytes.");
+                        throw new InvalidOperationException("Connection lost.");
 
                     var buffer = new byte[totalBytesReceived];
                     Array.Copy(receiveBuffer, buffer, totalBytesReceived);
@@ -342,9 +351,9 @@ namespace StilSoft.Network
                     if (socketException?.SocketErrorCode == SocketError.Interrupted)
                         break;
 
-                    Disconnect();
+                    DisconnectInternal();
 
-                    if (AutoReconnect)
+                    if (AutoReconnect && !_externalDisconnectCall)
                         _autoReconnectTimer.Enabled = true;
 
                     OnInternalError(ex);
@@ -356,7 +365,7 @@ namespace StilSoft.Network
 
         private void AutoReconnectTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (IsConnected() || _reconnectAttemptsCounter == 0)
+            if (!AutoReconnect || IsConnected() || _reconnectAttemptsCounter == 0 || _externalDisconnectCall)
                 return;
 
             _reconnectAttemptsCounter--;
