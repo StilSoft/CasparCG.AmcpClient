@@ -11,6 +11,7 @@
 
 using StilSoft.CasparCG.AmcpClient;
 using StilSoft.CasparCG.AmcpClient.Commands.Basic;
+using StilSoft.CasparCG.AmcpClient.Commands.Basic.Common;
 using StilSoft.CasparCG.AmcpClient.Commands.Cg;
 using StilSoft.CasparCG.AmcpClient.Commands.Cg.Common.TemplateData;
 using StilSoft.CasparCG.AmcpClient.Commands.Mixer;
@@ -18,6 +19,7 @@ using StilSoft.CasparCG.AmcpClient.Commands.Mixer.Common;
 using StilSoft.CasparCG.AmcpClient.Commands.Query;
 using StilSoft.CasparCG.AmcpClient.Commands.Query.Common;
 using StilSoft.CasparCG.AmcpClient.Commands.Thumbnail;
+using StilSoft.CasparCG.AmcpClient.Common.Enums;
 using StilSoft.Network;
 using System;
 using System.Collections.ObjectModel;
@@ -64,7 +66,9 @@ namespace AmcpClientExample
                 }));
             };
 
-            _connection.InternalError += (s, e) => Console.WriteLine(e);
+            _connection.InternalError += (s, e) => Console.WriteLine(e.Exception.Message);
+
+            LoadTransition();
         }
 
         private async void ConnectButton_Click(object sender, RoutedEventArgs e)
@@ -91,6 +95,14 @@ namespace AmcpClientExample
             }
         }
 
+        private void HostNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!IsLoaded)
+                return;
+
+            _connection.Hostname = HostNameTextBox.Text;
+        }
+
         private void ChannelTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             _channel = null;
@@ -113,6 +125,40 @@ namespace AmcpClientExample
 
         #region EXAMPLE 1
 
+        private void LoadTransition()
+        {
+            var transitions = Enum.GetValues(typeof(TransitionType));
+
+            TransitionTypeComboBox.Items.Add("None");
+
+            foreach (var transition in transitions)
+            {
+                TransitionTypeComboBox.Items.Add(transition.ToString());
+            }
+
+            TransitionTypeComboBox.SelectedIndex = 0;
+
+
+            var tweens = Enum.GetValues(typeof(Tween));
+
+            foreach (var tween in tweens)
+            {
+                TransitionTweenComboBox.Items.Add(tween.ToString());
+            }
+
+            TransitionTweenComboBox.SelectedIndex = 0;
+
+
+            var directions = Enum.GetValues(typeof(Direction));
+
+            foreach (var direction in directions)
+            {
+                TransitionDirectionComboBox.Items.Add(direction.ToString());
+            }
+
+            TransitionDirectionComboBox.SelectedIndex = 1;
+        }
+
         private async void LoadMediaButton_Click(object sender, RoutedEventArgs e)
         {
             LoadMediaButton.IsEnabled = false;
@@ -132,12 +178,7 @@ namespace AmcpClientExample
             LoadMediaButton.IsEnabled = true;
         }
 
-        private void ClearListButton_Click(object sender, RoutedEventArgs e)
-        {
-            MediaListView.ItemsSource = null;
-        }
-
-        private async void LoadBgButton_Click(object sender, RoutedEventArgs e)
+        private async void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             var mediaFileInfo = MediaListView.SelectedValue as MediaFileInfo;
 
@@ -146,19 +187,23 @@ namespace AmcpClientExample
 
             try
             {
-                await new LoadBgCommand(_channel, _layer, mediaFileInfo.FullName).ExecuteAsync(_connection);
-            }
-            catch (Exception ex)
-            {
-                ShowException(ex);
-            }
-        }
+                Transition transition = null;
 
-        private async void PlayButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await new PlayCommand(_channel, _layer).ExecuteAsync(_connection);
+                if (TransitionTypeComboBox.SelectedIndex > 0)
+                {
+                    var transitionType = (TransitionType)Enum.Parse(typeof(TransitionType), TransitionTypeComboBox.SelectedValue.ToString());
+                    int transitionDuration;
+                    int.TryParse(TransitionDurationTextBox.Text, out transitionDuration);
+                    var transitionTween = (Tween)Enum.Parse(typeof(Tween), TransitionTweenComboBox.SelectedValue.ToString());
+                    var transitionDirection = (Direction)Enum.Parse(typeof(Direction), TransitionDirectionComboBox.SelectedValue.ToString());
+
+                    transition = new Transition(transitionType, transitionDuration, transitionTween, transitionDirection);
+                }
+
+                await new PlayCommand(_channel, _layer, mediaFileInfo.FullName, LoopCheckBox.IsChecked)
+                {
+                    Transition = transition
+                }.ExecuteAsync(_connection);
             }
             catch (Exception ex)
             {
@@ -423,7 +468,6 @@ namespace AmcpClientExample
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
-
 
         private void MixerChromaSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {

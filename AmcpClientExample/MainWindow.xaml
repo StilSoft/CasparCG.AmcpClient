@@ -10,9 +10,10 @@
     <Grid>
         <Button x:Name="ConnectButton" Content="Connect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="10,10,0,0" Click="ConnectButton_Click"/>
         <Button x:Name="DisconnectButton" Content="Disconnect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="10,32,0,0" Click="DisconnectButton_Click"/>
-        <TextBox x:Name="HostNameTextBox" HorizontalAlignment="Left" Height="20" Margin="10,57,0,0" Text="localhost" VerticalAlignment="Top" Width="105" TextAlignment="Center"/>
+        <TextBox x:Name="HostNameTextBox" HorizontalAlignment="Left" Height="20" Margin="10,57,0,0" Text="localhost" VerticalAlignment="Top" Width="105" TextAlignment="Center" TextChanged="HostNameTextBox_TextChanged"/>
         <Ellipse x:Name="ConnectionStateIndicator" Fill="Red" HorizontalAlignment="Left" Height="20" Margin="158,11,0,0" Stroke="Black" VerticalAlignment="Top" Width="20" RenderTransformOrigin="0.6,2.75"/>
         <TextBlock x:Name="ConnectionStateTextBlock" HorizontalAlignment="Left" Margin="115,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Disconnected" Width="106" TextAlignment="Center"/>
+        <Button x:Name="ClearChannel" Content="Clear Ch./Lay." HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Margin="327,24,0,0" Click="ClearChannel_Click" Height="21"/>
         <TextBlock HorizontalAlignment="Left" Margin="413,7,0,0" TextWrapping="Wrap" Text="Channel" VerticalAlignment="Top"/>
         <TextBox x:Name="ChannelTextBox" Text="1" HorizontalAlignment="Left" Height="21" Margin="412,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="46" TextAlignment="Center" TextChanged="ChannelTextBox_TextChanged"/>
         <TextBlock HorizontalAlignment="Left" Margin="472,7,0,0" TextWrapping="Wrap" Text="Layer" VerticalAlignment="Top"/>
@@ -24,13 +25,19 @@
         <TabControl HorizontalAlignment="Left" Height="458" Margin="10,104,0,0" VerticalAlignment="Top" Width="500">
             <TabItem Header="Example 1">
                 <Grid>
-                    <Button x:Name="LoadMediaButton" Content="Load Media" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="9,10,0,0" Click="LoadMediaButton_Click"/>
-                    <Button x:Name="ClearListButton" Content="Clear List" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="89,10,0,0" Click="ClearListButton_Click"/>
-                    <Button x:Name="LoadBgButton" Content="LoadBG" HorizontalAlignment="Left" Margin="169,10,0,0" VerticalAlignment="Top" Width="75" Click="LoadBgButton_Click"/>
-                    <Button x:Name="PlayButton" Content="Play" HorizontalAlignment="Left" Margin="249,10,0,0" VerticalAlignment="Top" Width="75" Click="PlayButton_Click"/>
-                    <Button x:Name="StopButton" Content="Stop" HorizontalAlignment="Left" Margin="329,10,0,0" VerticalAlignment="Top" Width="75" Click="StopButton_Click"/>
-                    <Button x:Name="ClearChannel" Content="Clear Ch." HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="409,10,0,0" Click="ClearChannel_Click"/>
-                    <ListView Margin="10,35,10,28" Name="MediaListView">
+                    <Button x:Name="LoadMediaButton" Content="Load Media" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,10,0,0" Click="LoadMediaButton_Click" Height="42"/>
+                    <Button x:Name="PlayButton" Content="Play" HorizontalAlignment="Left" Margin="103,11,0,0" VerticalAlignment="Top" Width="75" Click="PlayButton_Click"/>
+                    <Button x:Name="StopButton" Content="Stop" HorizontalAlignment="Left" Margin="103,32,0,0" VerticalAlignment="Top" Width="75" Click="StopButton_Click"/>
+                    <CheckBox x:Name="LoopCheckBox" Content="Loop" HorizontalAlignment="Left" Margin="183,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.149,-0.933"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="250,11,0,0" TextWrapping="Wrap" Text="Transition" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="TransitionTypeComboBox" HorizontalAlignment="Left" Margin="247,28,0,0" VerticalAlignment="Top" Width="58"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="310,11,0,0" TextWrapping="Wrap" Text="Duration" VerticalAlignment="Top" RenderTransformOrigin="0.457,0.75"/>
+                    <TextBox x:Name="TransitionDurationTextBox" HorizontalAlignment="Left" Height="21" Margin="310,29,0,0" TextWrapping="Wrap" Text="25" VerticalAlignment="Top" Width="46" TextAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="372,11,0,0" TextWrapping="Wrap" Text="Tween" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="TransitionTweenComboBox" HorizontalAlignment="Left" Margin="361,28,0,0" VerticalAlignment="Top" Width="58"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="429,11,0,0" TextWrapping="Wrap" Text="Direction" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="TransitionDirectionComboBox" HorizontalAlignment="Left" Margin="424,28,0,0" VerticalAlignment="Top" Width="58"/>
+                    <ListView Margin="10,60,10,10" Name="MediaListView">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="FullName" Width="340" DisplayMemberBinding="{Binding FullName}" />
@@ -50,7 +57,6 @@
                             </Style>
                         </ListView.ItemContainerStyle>
                     </ListView>
-                    <TextBlock HorizontalAlignment="Left" Margin="10,408,0,0" TextWrapping="Wrap" Text="To see thumbnail, move mouse cursor over media name." VerticalAlignment="Top" FontWeight="Bold"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Example 2">
@@ -164,7 +170,7 @@
                             <TextBlock x:Name="MixerChromaSpillSuppressSaturationTextBlock" HorizontalAlignment="Left" Margin="238,122,0,0" TextWrapping="Wrap" Text="-" VerticalAlignment="Top"/>
 
                             <CheckBox x:Name="MixerChromaEnableCheckBox" Content="Enable Chroma" HorizontalAlignment="Left" Margin="22,147,0,0" VerticalAlignment="Top" Checked="MixerChromaCheckBox_Changed" Unchecked="MixerChromaCheckBox_Changed"/>
-                            
+
                             <CheckBox x:Name="MixerChromaShowMaskCheckBox" Content="Show Mask" HorizontalAlignment="Left" Margin="147,147,0,0" VerticalAlignment="Top" Checked="MixerChromaCheckBox_Changed" Unchecked="MixerChromaCheckBox_Changed"/>
                         </Grid>
                     </GroupBox>
