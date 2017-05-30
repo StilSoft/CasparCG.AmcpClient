@@ -14,7 +14,7 @@ You can find example project in the source code ([AmcpClientExample project](htt
 # License
 CasparCG AmcpClient is distributed under the MIT License, see [LICENSE](LICENSE?raw=true) for details.
 
-## Acknowledgements
+# Acknowledgements
 Many thanks for [CasparCG Server](https://github.com/CasparCG/Server) project and contributors.
 
 # Important notice
