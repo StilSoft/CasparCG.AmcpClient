@@ -108,11 +108,12 @@ namespace StilSoft.CasparCG.AmcpClient.Common
 
             byte index = 0;
 
-            if (string.IsNullOrWhiteSpace(CommandPacket.PacketId))
+            if (CommandPacket.IncludePacketId)
             {
-                // "200 CLS OK"
-                if (values.Length < 2 ||
-                    !Equals(CommandPacket.CommandName, values[1]))  // TODO return code 400 and 500 not contain command name ???
+                // "RES e52e0080-9dfc-4c1a-942e-549bfa48d143 200 CLS OK"
+                if (values.Length < 4 ||
+                    !values[index++].Equals("RES") ||
+                    !CommandPacket.PacketId.Equals(values[index++]))
                 {
                     //Debug.WriteLine("Invalid header");
                     return false;
@@ -120,10 +121,9 @@ namespace StilSoft.CasparCG.AmcpClient.Common
             }
             else
             {
-                // "RES e52e0080-9dfc-4c1a-942e-549bfa48d143 200 CLS OK"
-                if (values.Length < 4 ||
-                    !values[index++].Equals("RES") ||
-                    !CommandPacket.PacketId.Equals(values[index++]))
+                // "200 CLS OK"
+                if (values.Length < 2 ||
+                    !Equals(CommandPacket.CommandName, values[1]))  // TODO return code 400 and 500 not contain command name ???
                 {
                     //Debug.WriteLine("Invalid header");
                     return false;

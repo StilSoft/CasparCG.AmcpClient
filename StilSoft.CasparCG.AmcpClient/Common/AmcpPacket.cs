@@ -18,31 +18,20 @@ namespace StilSoft.CasparCG.AmcpClient.Common
     public class AmcpPacket : ICommandPacket
     {
         private readonly string _data;
-        private string _packetId;
 
-        public bool SendPacketId { get; set; }
-
-        public string PacketId
-        {
-            get
-            {
-                if (SendPacketId && string.IsNullOrWhiteSpace(_packetId))
-                    _packetId = Guid.NewGuid().ToString();
-
-                return _packetId;
-            }
-        }
+        public bool IncludePacketId { get; set; }
+        public string PacketId { get; }
 
         public byte[] Data
         {
             get
             {
-                var id = "";
+                var packetId = "";
 
-                if (!string.IsNullOrWhiteSpace(PacketId))
-                    id = $"REQ {PacketId} ";
+                if (IncludePacketId)
+                    packetId = $"REQ {PacketId} ";
 
-                return Encoding.UTF8.GetBytes($"{id}{_data}\r\n");
+                return Encoding.UTF8.GetBytes($"{packetId}{_data}\r\n");
             }
         }
 
@@ -51,6 +40,7 @@ namespace StilSoft.CasparCG.AmcpClient.Common
 
         public AmcpPacket(string data)
         {
+            PacketId = Guid.NewGuid().ToString();
             _data = data;
         }
     }

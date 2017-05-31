@@ -43,11 +43,11 @@ namespace StilSoft.CasparCG.AmcpClient.Commands
                 serverVersion = Connection.GetServerVersion();
 
             // CasparCG server versions before 2.1.0.3266 do not support unique packet id.
-            var sendPacketId = serverVersion >= new Version(2, 1, 0, 3266);
+            var includePacketId = serverVersion != null && serverVersion >= new Version(2, 1, 0, 3266);
 
             var amcpPacket = new AmcpPacket(GetCommandString())
             {
-                SendPacketId = sendPacketId,
+                IncludePacketId = includePacketId,
                 CommandName = CommandName
             };
 

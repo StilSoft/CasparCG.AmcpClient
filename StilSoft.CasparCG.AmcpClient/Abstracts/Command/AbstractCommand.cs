@@ -96,16 +96,17 @@ namespace StilSoft.CasparCG.AmcpClient.Abstracts.Command
                         // Wait parser to complete
                         var isParserComplete = parserCompleteEvent.WaitOne(ResponseTimeout);
 
+                        Debug.WriteLine("Deattach parser");
+                        connection.DataReceived -= dataReceivedEventHandler;
+
                         if (parserException != null)
                             ExceptionDispatchInfo.Capture(parserException).Throw();
 
                         if (!isParserComplete)
                             throw new TimeoutException("Command response timeout.");
 
-                        response.ProcessData(parserResponse);
-
-                        Debug.WriteLine("Deattach parser");
-                        connection.DataReceived -= dataReceivedEventHandler;
+                        if (parserResponse != null)
+                            response.ProcessData(parserResponse);
                     }
                 }
                 catch

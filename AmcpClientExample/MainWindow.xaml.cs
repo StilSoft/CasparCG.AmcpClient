@@ -127,11 +127,9 @@ namespace AmcpClientExample
 
         private void LoadTransition()
         {
-            var transitions = Enum.GetValues(typeof(TransitionType));
-
             TransitionTypeComboBox.Items.Add("None");
 
-            foreach (var transition in transitions)
+            foreach (var transition in Enum.GetValues(typeof(TransitionType)))
             {
                 TransitionTypeComboBox.Items.Add(transition.ToString());
             }
@@ -139,9 +137,7 @@ namespace AmcpClientExample
             TransitionTypeComboBox.SelectedIndex = 0;
 
 
-            var tweens = Enum.GetValues(typeof(Tween));
-
-            foreach (var tween in tweens)
+            foreach (var tween in Enum.GetValues(typeof(Tween)))
             {
                 TransitionTweenComboBox.Items.Add(tween.ToString());
             }
@@ -149,9 +145,7 @@ namespace AmcpClientExample
             TransitionTweenComboBox.SelectedIndex = 0;
 
 
-            var directions = Enum.GetValues(typeof(Direction));
-
-            foreach (var direction in directions)
+            foreach (var direction in Enum.GetValues(typeof(Direction)))
             {
                 TransitionDirectionComboBox.Items.Add(direction.ToString());
             }
@@ -599,8 +593,6 @@ namespace AmcpClientExample
             switch (e)
             {
                 case ConnectionState.Connecting:
-                    color = Brushes.Yellow;
-                    break;
                 case ConnectionState.Reconnecting:
                     color = Brushes.Yellow;
                     break;
