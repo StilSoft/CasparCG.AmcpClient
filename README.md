@@ -14,12 +14,10 @@ You can find example project in the source code ([AmcpClientExample project](htt
 # License
 CasparCG AmcpClient is distributed under the MIT License, see [LICENSE](LICENSE?raw=true) for details.
 
-## Acknowledgements
+# Acknowledgements
 Many thanks for [CasparCG Server](https://github.com/CasparCG/Server) project and contributors.
 
 # Important notice
 **_Currently support only AMCP 2.1 protocol._**
 
 **_Almost all commands are fully implemented (acording to [AMCP protocol](http://casparcg.com/wiki/CasparCG_2.1_AMCP_Protocol) specification) but still missing some functions that are not listed in specification._**
-
-**_Because library is still under development, some classes may be renamed or moved to different location._**
