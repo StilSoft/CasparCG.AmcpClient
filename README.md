@@ -9,7 +9,7 @@ CasparCG AmcpClient is .NET library for communication with [CasparCG Server](htt
 * All commands are with proper return data.
 
 # Examples
-You can find example project in the source code ([AmcpClientExample project](https://github.com/StilSoft/CasparCG.AmcpClient/tree/master/AmcpClientExample)).
+You can find example project in the source code ([AmcpClientExample](https://github.com/StilSoft/CasparCG.AmcpClient/tree/master/AmcpClientExample) project).
 
 # License
 CasparCG AmcpClient is distributed under the MIT License, see [LICENSE](LICENSE?raw=true) for details.
