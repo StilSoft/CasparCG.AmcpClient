@@ -9,9 +9,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-using System.ComponentModel.DataAnnotations;
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes;
 using StilSoft.CasparCG.AmcpClient.Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace StilSoft.CasparCG.AmcpClient.Commands
 {

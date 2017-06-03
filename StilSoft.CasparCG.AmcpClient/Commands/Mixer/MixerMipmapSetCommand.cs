@@ -11,8 +11,8 @@
 
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes;
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Converters;
-using System.ComponentModel.DataAnnotations;
 using StilSoft.CasparCG.AmcpClient.Commands.Mixer.Common;
+using System.ComponentModel.DataAnnotations;
 
 namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
 {
