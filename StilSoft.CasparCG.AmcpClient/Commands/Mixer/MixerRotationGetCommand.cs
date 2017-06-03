@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get rotation value of a layer.
     /// </summary>
-    public class MixerRotationGetCommand : AbstractMixerLayerCommand<MixerRotationGetCommandResponse>
+    public class MixerRotationGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerRotationGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // } 
         // ROTATION 
 
-        internal override string MixerCommandName { get; } = "ROTATION";
+        internal override string SubCommandName { get; } = "ROTATION";
 
 
         public MixerRotationGetCommand(int? channel = null, int? layer = null)

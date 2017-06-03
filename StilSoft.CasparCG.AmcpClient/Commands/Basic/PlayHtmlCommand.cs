@@ -20,7 +20,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Basic
     /// <summary>
     /// Play a web page.
     /// </summary>
-    public class PlayHtmlCommand : AbstractLayerCommand
+    public class PlayHtmlCommand : AbstractLayerCommandWithSubCommand
     {
         // PLAY
         // [channel:int]
@@ -53,8 +53,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Basic
         internal override string CommandName { get; } = "PLAY";
 
         [IncludeIfIncluded(nameof(Url))]
-        [CommandParameter(3)]
-        internal string SubCommand { get; } = "[HTML]";
+        internal override string SubCommandName { get; } = "[HTML]";
 
         [IsValidUrl]
         [ValueToEscapedString]

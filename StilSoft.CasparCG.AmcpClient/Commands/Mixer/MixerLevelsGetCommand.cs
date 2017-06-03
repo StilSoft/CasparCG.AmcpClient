@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the video levels of a layer.
     /// </summary>
-    public class MixerLevelsGetCommand : AbstractMixerLayerCommand<MixerLevelsGetCommandResponse>
+    public class MixerLevelsGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerLevelsGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // } 
         // LEVELS 
 
-        internal override string MixerCommandName { get; } = "LEVELS";
+        internal override string SubCommandName { get; } = "LEVELS";
 
 
         public MixerLevelsGetCommand(int? channel = null, int? layer = null)

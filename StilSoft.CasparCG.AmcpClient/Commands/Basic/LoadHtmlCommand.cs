@@ -19,7 +19,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Basic
     /// <summary>
     /// Load a web page to the foreground.
     /// </summary>
-    public class LoadHtmlCommand : AbstractLayerCommand
+    public class LoadHtmlCommand : AbstractLayerCommandWithSubCommand
     {
         // LOAD
         // [channel:int]
@@ -34,8 +34,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Basic
 
         internal override string CommandName { get; } = "LOAD";
 
-        [CommandParameter(3)]
-        internal string SubCommand { get; } = "[HTML]";
+        internal override string SubCommandName { get; } = "[HTML]";
 
         [Required]
         [IsValidUrl]

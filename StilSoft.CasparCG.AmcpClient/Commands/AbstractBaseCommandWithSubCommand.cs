@@ -9,24 +9,23 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
+using System.ComponentModel.DataAnnotations;
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes;
 using StilSoft.CasparCG.AmcpClient.Common;
-using System.ComponentModel.DataAnnotations;
 
-namespace StilSoft.CasparCG.AmcpClient.Commands.Data
+namespace StilSoft.CasparCG.AmcpClient.Commands
 {
-    public abstract class AbstractDataCommand : AbstractDataCommand<AmcpResponse>
+    public abstract class AbstractBaseCommandWithSubCommand : AbstractBaseCommandWithSubCommand<AmcpResponse>
     {
 
     }
 
-    public abstract class AbstractDataCommand<TResponse> : AbstractBaseCommand<TResponse>
+    [CommandBuilderObject]
+    public abstract class AbstractBaseCommandWithSubCommand<TResponse> : AbstractBaseCommand<TResponse>
         where TResponse : AmcpResponse, new()
     {
-        internal override string CommandName { get; } = "DATA";
-
         [Required]
         [CommandParameter(1)]
-        internal abstract string DataCommandName { get; }
+        internal abstract string SubCommandName { get; }
     }
 }

@@ -19,12 +19,12 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Data
     /// <summary>
     /// Remove a stored dataset.
     /// </summary>
-    public class DataRemoveCommand : AbstractDataCommand
+    public class DataRemoveCommand : AbstractDataCommandWithSubCommand
     {
         // DATA REMOVE
         // [name:string]
 
-        internal override string DataCommandName { get; } = "REMOVE";
+        internal override string SubCommandName { get; } = "REMOVE";
 
         [Required]
         [IsValidFullName]

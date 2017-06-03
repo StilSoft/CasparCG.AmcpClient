@@ -20,7 +20,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Basic
     /// <summary>
     /// Load a web page in the background.
     /// </summary>
-    public class LoadHtmlBgCommand : AbstractLayerCommand
+    public class LoadHtmlBgCommand : AbstractLayerCommandWithSubCommand
     {
         // LOADBG
         // [channel:int]
@@ -51,8 +51,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Basic
 
         internal override string CommandName { get; } = "LOADBG";
 
-        [CommandParameter(3)]
-        internal string SubCommand { get; } = "[HTML]";
+        internal override string SubCommandName { get; } = "[HTML]";
 
         [Required]
         [IsValidUrl]

@@ -15,7 +15,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Clear all transformations on a channel or layer.
     /// </summary>
-    public class MixerClearCommand : AbstractMixerLayerCommand
+    public class MixerClearCommand : AbstractMixerLayerCommandWithSubCommand
     {
         // MIXER
         // [video_channel:int]
@@ -24,7 +24,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // }
         // CLEAR 
 
-        internal override string MixerCommandName { get; } = "CLEAR";
+        internal override string SubCommandName { get; } = "CLEAR";
 
 
         public MixerClearCommand(int? channel = null, int? layer = null)

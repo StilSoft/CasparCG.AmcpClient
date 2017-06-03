@@ -9,24 +9,22 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
+using System.ComponentModel.DataAnnotations;
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes;
 using StilSoft.CasparCG.AmcpClient.Common;
-using System.ComponentModel.DataAnnotations;
 
-namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
+namespace StilSoft.CasparCG.AmcpClient.Commands
 {
-    public abstract class AbstractMixerChannelCommand : AbstractMixerChannelCommand<AmcpResponse>
+    public abstract class AbstractChannelCommandWithSubCommand : AbstractChannelCommandWithSubCommand<AmcpResponse>
     {
-
+        
     }
 
-    public abstract class AbstractMixerChannelCommand<TResponse> : AbstractChannelCommand<TResponse>
+    public abstract class AbstractChannelCommandWithSubCommand<TResponse> : AbstractChannelCommand<TResponse>
         where TResponse : AmcpResponse, new()
     {
-        internal override string CommandName { get; } = "MIXER";
-
         [Required]
         [CommandParameter(2)]
-        internal abstract string MixerCommandName { get; }
+        internal abstract string SubCommandName { get; }
     }
 }

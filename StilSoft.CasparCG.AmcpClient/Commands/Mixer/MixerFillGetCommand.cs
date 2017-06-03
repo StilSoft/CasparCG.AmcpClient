@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the fill position and scale of a layer.
     /// </summary>
-    public class MixerFillGetCommand : AbstractMixerLayerCommand<MixerFillGetCommandResponse>
+    public class MixerFillGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerFillGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // } 
         // FILL 
 
-        internal override string MixerCommandName { get; } = "FILL";
+        internal override string SubCommandName { get; } = "FILL";
 
 
         public MixerFillGetCommand(int? channel = null, int? layer = null)

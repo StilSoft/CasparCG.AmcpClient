@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the volume of a layer.
     /// </summary>
-    public class MixerVolumeGetCommand : AbstractMixerLayerCommand<MixerVolumeGetCommandResponse>
+    public class MixerVolumeGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerVolumeGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // } 
         // VOLUME 
 
-        internal override string MixerCommandName { get; } = "VOLUME";
+        internal override string SubCommandName { get; } = "VOLUME";
 
 
         public MixerVolumeGetCommand(int? channel = null, int? layer = null)

@@ -16,11 +16,11 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Query
     /// <summary>
     /// Get the contents of the configuration used.
     /// </summary>
-    public class InfoConfigCommand : AbstractInfoCommand<InfoConfigCommandResponse>
+    public class InfoConfigCommand : AbstractInfoCommandWithSubCommand<InfoConfigCommandResponse>
     {
         // INFO
         // CONFIG
 
-        internal override string InfoCommandName { get; } = "CONFIG";
+        internal override string SubCommandName { get; } = "CONFIG";
     }
 }

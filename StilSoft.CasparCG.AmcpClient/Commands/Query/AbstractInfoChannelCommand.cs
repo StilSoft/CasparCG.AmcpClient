@@ -9,18 +9,18 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-using StilSoft.CasparCG.AmcpClient.Commands.Query.Common.Response;
+using StilSoft.CasparCG.AmcpClient.Common;
 
 namespace StilSoft.CasparCG.AmcpClient.Commands.Query
 {
-    /// <summary>
-    /// Get system information.
-    /// </summary>
-    public class InfoSystemCommand : AbstractInfoCommandWithSubCommand<InfoSystemCommandResponse>
+    public abstract class AbstractInfoChannelCommand : AbstractInfoChannelCommand<AmcpResponse>
     {
-        // INFO
-        // SYSTEM
 
-        internal override string SubCommandName { get; } = "SYSTEM";
+    }
+
+    public abstract class AbstractInfoChannelCommand<TResponse> : AbstractChannelCommand<TResponse>
+        where TResponse : AmcpResponse, new()
+    {
+        internal override string CommandName { get; } = "INFO";
     }
 }

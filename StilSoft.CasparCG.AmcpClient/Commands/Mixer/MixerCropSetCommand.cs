@@ -18,7 +18,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Crop a layer.
     /// </summary>
-    public class MixerCropSetCommand : AbstractMixerLayerCommand
+    public class MixerCropSetCommand : AbstractMixerLayerCommandWithSubCommand
     {
         // MIXER
         // [video_channel:int]
@@ -42,7 +42,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     } 
         // }
 
-        internal override string MixerCommandName { get; } = "CROP";
+        internal override string SubCommandName { get; } = "CROP";
 
         [Required]
         [CommandParameter]

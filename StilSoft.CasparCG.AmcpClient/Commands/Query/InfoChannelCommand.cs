@@ -16,16 +16,10 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Query
     /// <summary>
     /// Get information about a channel.
     /// </summary>
-    public class InfoChannelCommand : AbstractChannelCommand<InfoChannelCommandResponse>
+    public class InfoChannelCommand : AbstractInfoChannelCommand<InfoChannelCommandResponse>
     {
         // INFO
         // [video_channel:int]
-        // {
-        //     -[layer:int]
-        // }
-
-        internal override string CommandName { get; } = "INFO";
-
 
         public InfoChannelCommand(int? channel = null)
         {

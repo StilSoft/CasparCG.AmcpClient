@@ -9,7 +9,6 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes;
 using StilSoft.CasparCG.AmcpClient.Commands.Query.Common.Response;
 
 namespace StilSoft.CasparCG.AmcpClient.Commands.Query
@@ -17,24 +16,20 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Query
     /// <summary>
     /// Get the current delay on a channel.
     /// </summary>
-    public class InfoChannelDelayCommand : AbstractChannelCommand<InfoChannelDelayCommandResponse>
+    public class InfoChannelDelayCommand : AbstractInfoChannelCommandWithSubCommand<InfoChannelDelayCommandResponse>
     {
         // INFO 
         // [video_channel:int]
-        // {
-        //     -[layer:int]
-        // } 
         // DELAY
 
-        internal override string CommandName { get; } = "INFO";
-
-        [CommandParameter]
-        public string InfoCommandName { get; } = "DELAY";
+        internal override string SubCommandName { get; } = "DELAY";
 
 
         public InfoChannelDelayCommand(int? channel = null)
         {
             Channel = channel;
         }
+
+        
     }
 }

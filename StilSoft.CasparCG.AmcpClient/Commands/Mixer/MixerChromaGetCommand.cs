@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the chroma keying on a layer.
     /// </summary>
-    public class MixerChromaGetCommand : AbstractMixerLayerCommand<MixerChromaGetCommandResponse>
+    public class MixerChromaGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerChromaGetCommandResponse>
     {
         // MIXER 
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // }
         // CHROMA
 
-        internal override string MixerCommandName { get; } = "CHROMA";
+        internal override string SubCommandName { get; } = "CHROMA";
 
 
         public MixerChromaGetCommand(int? channel = null, int? layer = null)

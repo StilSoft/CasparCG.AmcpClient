@@ -18,7 +18,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Create a grid of video layers.
     /// </summary>
-    public class MixerGridCommand : AbstractMixerChannelCommand
+    public class MixerGridCommand : AbstractMixerChannelCommandWithSubCommand
     {
         // MIXER
         // [video_channel:int]
@@ -33,7 +33,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     |0 linear 
         // } 
 
-        internal override string MixerCommandName { get; } = "GRID";
+        internal override string SubCommandName { get; } = "GRID";
 
         [Required]
         [Range(0, int.MaxValue)]

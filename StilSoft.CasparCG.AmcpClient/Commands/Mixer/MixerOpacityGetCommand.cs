@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the opacity of a layer.
     /// </summary>
-    public class MixerOpacityGetCommand : AbstractMixerLayerCommand<MixerOpacityGetCommandResponse>
+    public class MixerOpacityGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerOpacityGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // } 
         // OPACITY 
 
-        internal override string MixerCommandName { get; } = "OPACITY";
+        internal override string SubCommandName { get; } = "OPACITY";
 
 
         public MixerOpacityGetCommand(int? channel = null, int? layer = null)

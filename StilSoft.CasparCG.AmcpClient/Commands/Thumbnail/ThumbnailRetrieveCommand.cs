@@ -20,13 +20,13 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Thumbnail
     /// <summary>
     /// Retrieve a thumbnail.
     /// </summary>
-    public class ThumbnailRetrieveCommand : AbstractThumbnailCommand<ThumbnailRetrieveCommandResponse>
+    public class ThumbnailRetrieveCommand : AbstractThumbnailCommandWithSubCommand<ThumbnailRetrieveCommandResponse>
     {
         // THUMBNAIL 
         // RETRIEVE
         // [filename:string]
 
-        internal override string ThumbnailCommandName { get; } = "RETRIEVE";
+        internal override string SubCommandName { get; } = "RETRIEVE";
 
         [Required]
         [IsValidFullName]

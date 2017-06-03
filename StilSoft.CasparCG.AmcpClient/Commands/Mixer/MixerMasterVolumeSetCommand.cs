@@ -18,7 +18,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Change the volume of an entire channel.
     /// </summary>
-    public class MixerMasterVolumeSetCommand : AbstractMixerChannelCommand
+    public class MixerMasterVolumeSetCommand : AbstractMixerChannelCommandWithSubCommand
     {
         // MIXER
         // [video_channel:int]
@@ -27,7 +27,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     [volume:float] 
         // }
 
-        internal override string MixerCommandName { get; } = "MASTERVOLUME";
+        internal override string SubCommandName { get; } = "MASTERVOLUME";
 
         [Required]
         [Range(0.0, 10.0)]

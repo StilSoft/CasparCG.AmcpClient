@@ -16,11 +16,11 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Query
     /// <summary>
     /// Get information about the paths used.
     /// </summary>
-    public class InfoPathsCommand : AbstractInfoCommand<InfoPathsCommandResponse>
+    public class InfoPathsCommand : AbstractInfoCommandWithSubCommand<InfoPathsCommandResponse>
     {
         // INFO
         // PATHS
 
-        internal override string InfoCommandName { get; } = "PATHS";
+        internal override string SubCommandName { get; } = "PATHS";
     }
 }

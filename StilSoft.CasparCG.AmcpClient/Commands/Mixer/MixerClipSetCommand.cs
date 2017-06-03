@@ -18,7 +18,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Change the clipping viewport of a layer.
     /// </summary>
-    public class MixerClipSetCommand : AbstractMixerLayerCommand
+    public class MixerClipSetCommand : AbstractMixerLayerCommandWithSubCommand
     {
         // MIXER
         // [video_channel:int]
@@ -42,7 +42,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     } 
         // }
 
-        internal override string MixerCommandName { get; } = "CLIP";
+        internal override string SubCommandName { get; } = "CLIP";
 
         [Required]
         [CommandParameter]

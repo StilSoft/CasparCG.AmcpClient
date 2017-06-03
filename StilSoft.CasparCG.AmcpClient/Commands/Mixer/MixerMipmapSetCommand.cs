@@ -19,7 +19,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Enable or disable mipmapping for a layer.
     /// </summary>
-    public class MixerMipmapSetCommand : AbstractMixerLayerCommand
+    public class MixerMipmapSetCommand : AbstractMixerLayerCommandWithSubCommand
     {
         // MIXER 
         // [video_channel:int]
@@ -33,7 +33,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     |0
         // }
 
-        internal override string MixerCommandName { get; } = "MIPMAP";
+        internal override string SubCommandName { get; } = "MIPMAP";
 
         [Required]
         [BooleanToString("1", "0")]

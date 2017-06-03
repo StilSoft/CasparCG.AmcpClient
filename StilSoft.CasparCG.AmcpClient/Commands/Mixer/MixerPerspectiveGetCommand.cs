@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the perspective transform of a layer.
     /// </summary>
-    public class MixerPerspectiveGetCommand : AbstractMixerLayerCommand<MixerPerspectiveGetCommandResponse>
+    public class MixerPerspectiveGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerPerspectiveGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // } 
         // PERSPECTIVE 
 
-        internal override string MixerCommandName { get; } = "PERSPECTIVE";
+        internal override string SubCommandName { get; } = "PERSPECTIVE";
 
 
         public MixerPerspectiveGetCommand(int? channel = null, int? layer = null)

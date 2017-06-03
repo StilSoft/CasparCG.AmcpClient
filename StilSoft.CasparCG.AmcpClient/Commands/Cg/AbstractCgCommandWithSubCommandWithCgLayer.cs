@@ -10,32 +10,25 @@
 
 
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes;
-using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes.Conditions;
 using StilSoft.CasparCG.AmcpClient.Common;
 using System.ComponentModel.DataAnnotations;
 
 namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
 {
-    public abstract class AbstractCgCommandNoCgLayer : AbstractCgCommandNoCglayer<AmcpResponse>
+    public abstract class AbstractCgCommandWithSubCommandWithCgLayer : AbstractCgCommandWithSubCommandWithCgLayer<AmcpResponse>
     {
 
     }
 
-    public abstract class AbstractCgCommandNoCglayer<TResponse> : AbstractChannelCommand<TResponse>
+    public abstract class AbstractCgCommandWithSubCommandWithCgLayer<TResponse> : AbstractCgCommandWithSubCommandNoCglayer<TResponse>
         where TResponse : AmcpResponse, new()
     {
-        internal override string CommandName { get; } = "CG";
-
         /// <summary>
-        /// Video layer.
+        /// Cg layer.
         /// </summary>
-        [Range(0, 9999)]
-        [IncludeIfNotEqual(nameof(Layer), 9999)]
-        [CommandParameter("-{0}", true, 2)]
-        public int? Layer { get; set; }
-
         [Required]
-        [CommandParameter(3)]
-        internal abstract string CgCommandName { get; }
+        [Range(0, 9999)]
+        [CommandParameter(4)]
+        public int? CgLayer { get; set; }
     }
 }

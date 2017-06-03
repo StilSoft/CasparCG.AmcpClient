@@ -30,6 +30,6 @@ namespace StilSoft.CasparCG.AmcpClient.Commands
         [Range(0, 9999)]
         //[IncludeIfNotEqual(nameof(Layer), 0)]   // TODO We need to include this property (if is set) because some of the commands must include layer 0.
         [CommandParameter("-{0}", true, 2)]
-        public int? Layer { get; set; }
+        public virtual int? Layer { get; set; }
     }
 }

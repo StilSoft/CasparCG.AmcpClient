@@ -19,13 +19,13 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Data
     /// <summary>
     /// Store a dataset.
     /// </summary>
-    public class DataStoreCommand : AbstractDataCommand
+    public class DataStoreCommand : AbstractDataCommandWithSubCommand
     {
         // DATA STORE
         // [name:string]
         // [data:string]
 
-        internal override string DataCommandName { get; } = "STORE";
+        internal override string SubCommandName { get; } = "STORE";
 
         [Required]
         [IsValidFullName]

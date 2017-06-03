@@ -19,7 +19,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Rotate a layer.
     /// </summary>
-    public class MixerRotationSetCommand : AbstractMixerLayerCommand
+    public class MixerRotationSetCommand : AbstractMixerLayerCommandWithSubCommand
     {
         // MIXER
         // [video_channel:int]
@@ -40,7 +40,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     } 
         // }
 
-        internal override string MixerCommandName { get; } = "ROTATION";
+        internal override string SubCommandName { get; } = "ROTATION";
 
         [Required]
         [NumberToStringCulture("en-US")]

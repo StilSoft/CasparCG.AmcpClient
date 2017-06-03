@@ -9,26 +9,22 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
+using System.ComponentModel.DataAnnotations;
 using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes;
 using StilSoft.CasparCG.AmcpClient.Common;
-using System.ComponentModel.DataAnnotations;
 
-namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
+namespace StilSoft.CasparCG.AmcpClient.Commands
 {
-    public abstract class AbstractCgCommand : AbstractCgCommand<AmcpResponse>
+    public abstract class AbstractLayerCommandWithSubCommand : AbstractLayerCommandWithSubCommand<AmcpResponse>
     {
-
+        
     }
 
-    public abstract class AbstractCgCommand<TResponse> : AbstractCgCommandNoCglayer<TResponse>
+    public abstract class AbstractLayerCommandWithSubCommand<TResponse> : AbstractLayerCommand<TResponse>
         where TResponse : AmcpResponse, new()
     {
-        /// <summary>
-        /// Cg layer.
-        /// </summary>
         [Required]
-        [Range(0, 9999)]
-        [CommandParameter(4)]
-        public int? CgLayer { get; set; }
+        [CommandParameter(3)]
+        internal abstract string SubCommandName { get; }
     }
 }

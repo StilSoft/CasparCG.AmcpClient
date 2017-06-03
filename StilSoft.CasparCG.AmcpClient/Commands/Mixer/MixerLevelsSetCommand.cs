@@ -18,7 +18,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Adjust the video levels of a layer.
     /// </summary>
-    public class MixerLevelsSetCommand : AbstractMixerLayerCommand
+    public class MixerLevelsSetCommand : AbstractMixerLayerCommandWithSubCommand
     {
         // MIXER
         // [video_channel:int]
@@ -43,7 +43,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     } 
         // }
 
-        internal override string MixerCommandName { get; } = "LEVELS";
+        internal override string SubCommandName { get; } = "LEVELS";
 
         [Required]
         [CommandParameter]

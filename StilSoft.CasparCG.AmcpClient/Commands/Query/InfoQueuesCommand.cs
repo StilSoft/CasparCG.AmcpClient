@@ -16,11 +16,11 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Query
     /// <summary>
     /// Get detailed information about all AMCP Command Queues.
     /// </summary>
-    public class InfoQueuesCommand : AbstractInfoCommand<InfoQueuesCommandResponse>
+    public class InfoQueuesCommand : AbstractInfoCommandWithSubCommand<InfoQueuesCommandResponse>
     {
         // INFO
         // QUEUES
 
-        internal override string InfoCommandName { get; } = "QUEUES";
+        internal override string SubCommandName { get; } = "QUEUES";
     }
 }

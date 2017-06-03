@@ -16,13 +16,13 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get straight alpha output on or off for a channel.
     /// </summary>
-    public class MixerStraightAlphaOutputGetCommand : AbstractMixerChannelCommand<MixerStraightAlphaOutputGetCommandResponse>
+    public class MixerStraightAlphaOutputGetCommand : AbstractMixerChannelCommandWithSubCommand<MixerStraightAlphaOutputGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
         // STRAIGHT_ALPHA_OUTPUT 
 
-        internal override string MixerCommandName { get; } = "STRAIGHT_ALPHA_OUTPUT";
+        internal override string SubCommandName { get; } = "STRAIGHT_ALPHA_OUTPUT";
 
 
         public MixerStraightAlphaOutputGetCommand(int? channel = null)

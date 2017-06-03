@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the contrast of a layer.
     /// </summary>
-    public class MixerContrastGetCommand : AbstractMixerLayerCommand<MixerContrastGetCommandResponse>
+    public class MixerContrastGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerContrastGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // } 
         // CONTRAST 
 
-        internal override string MixerCommandName { get; } = "CONTRAST";
+        internal override string SubCommandName { get; } = "CONTRAST";
 
 
         public MixerContrastGetCommand(int? channel = null, int? layer = null)

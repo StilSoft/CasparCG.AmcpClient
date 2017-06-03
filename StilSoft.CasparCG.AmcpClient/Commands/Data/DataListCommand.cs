@@ -19,14 +19,14 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Data
     /// <summary>
     /// List stored datasets.
     /// </summary>
-    public class DataListCommand : AbstractDataCommand<DataListCommandResponse>
+    public class DataListCommand : AbstractDataCommandWithSubCommand<DataListCommandResponse>
     {
         // DATA LIST
         // {
         //     [sub_directory:string]
         // }
 
-        internal override string DataCommandName { get; } = "LIST";
+        internal override string SubCommandName { get; } = "LIST";
 
         [IsValidPath]
         [WindowsToUnixPath]

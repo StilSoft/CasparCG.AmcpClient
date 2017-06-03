@@ -15,7 +15,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
     /// <summary>
     /// Stop and remove a template.
     /// </summary>
-    public class CgStopCommand : AbstractCgCommand
+    public class CgStopCommand : AbstractCgCommandWithSubCommandWithCgLayer
     {
         // CG 
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
         // STOP
         // [cg_layer:int]
 
-        internal override string CgCommandName { get; } = "STOP";
+        internal override string SubCommandName { get; } = "STOP";
 
 
         public CgStopCommand(int? channel = null, int? layer = null, int? cgLayer = null)

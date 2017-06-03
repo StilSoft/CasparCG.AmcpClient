@@ -19,7 +19,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
     /// <summary>
     /// Update a template with new data.
     /// </summary>
-    public class CgUpdateCommand : AbstractCgCommand
+    public class CgUpdateCommand : AbstractCgCommandWithSubCommandWithCgLayer
     {
         // CG
         // [video_channel:int]
@@ -31,7 +31,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
         // [cg_layer:int]
         // [data:string]
 
-        internal override string CgCommandName { get; } = "UPDATE";
+        internal override string SubCommandName { get; } = "UPDATE";
 
         [Required]
         [ValueToEscapedString]

@@ -19,7 +19,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Change the saturation of a layer.
     /// </summary>
-    public class MixerSaturationSetCommand : AbstractMixerLayerCommand
+    public class MixerSaturationSetCommand : AbstractMixerLayerCommandWithSubCommand
     {
         // MIXER
         // [video_channel:int]
@@ -40,7 +40,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     } 
         // }
 
-        internal override string MixerCommandName { get; } = "SATURATION";
+        internal override string SubCommandName { get; } = "SATURATION";
 
         [Required]
         [Range(0.0, 1.0)]

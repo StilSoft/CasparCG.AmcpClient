@@ -9,24 +9,18 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes;
 using StilSoft.CasparCG.AmcpClient.Common;
-using System.ComponentModel.DataAnnotations;
 
 namespace StilSoft.CasparCG.AmcpClient.Commands.Thumbnail
 {
-    public abstract class AbstractThumbnailCommand : AbstractThumbnailCommand<AmcpResponse>
+    public abstract class AbstractThumbnailCommandWithSubCommand : AbstractThumbnailCommandWithSubCommand<AmcpResponse>
     {
 
     }
 
-    public abstract class AbstractThumbnailCommand<TResponse> : AbstractBaseCommand<TResponse>
+    public abstract class AbstractThumbnailCommandWithSubCommand<TResponse> : AbstractBaseCommandWithSubCommand<TResponse>
         where TResponse : AmcpResponse, new()
     {
         internal override string CommandName { get; } = "THUMBNAIL";
-
-        [Required]
-        [CommandParameter(1)]
-        internal abstract string ThumbnailCommandName { get; }
     }
 }

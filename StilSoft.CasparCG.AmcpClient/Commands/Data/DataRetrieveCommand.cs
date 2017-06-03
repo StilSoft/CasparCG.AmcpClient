@@ -20,12 +20,12 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Data
     /// <summary>
     /// Retrieve a dataset.
     /// </summary>
-    public class DataRetrieveCommand : AbstractDataCommand<DataRetrieveCommandResponse>
+    public class DataRetrieveCommand : AbstractDataCommandWithSubCommand<DataRetrieveCommandResponse>
     {
         // DATA RETRIEVE
         // [name:string]
 
-        internal override string DataCommandName { get; } = "RETRIEVE";
+        internal override string SubCommandName { get; } = "RETRIEVE";
 
         [Required]
         [IsValidFullName]

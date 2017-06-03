@@ -19,13 +19,13 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Thumbnail
     /// <summary>
     /// Regenerate a thumbnail.
     /// </summary>
-    public class ThumbnailGenerateCommand : AbstractThumbnailCommand
+    public class ThumbnailGenerateCommand : AbstractThumbnailCommandWithSubCommand
     {
         // THUMBNAIL 
         // GENERATE
         // [filename:string]
 
-        internal override string ThumbnailCommandName { get; } = "GENERATE";
+        internal override string SubCommandName { get; } = "GENERATE";
 
         [Required]
         [IsValidFullName]

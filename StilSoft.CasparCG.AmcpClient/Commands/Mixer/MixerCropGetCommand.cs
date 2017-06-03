@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the crop values of a layer.
     /// </summary>
-    public class MixerCropGetCommand : AbstractMixerLayerCommand<MixerCropGetCommandResponse>
+    public class MixerCropGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerCropGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // } 
         // CROP 
 
-        internal override string MixerCommandName { get; } = "CROP";
+        internal override string SubCommandName { get; } = "CROP";
 
 
         public MixerCropGetCommand(int? channel = null, int? layer = null)

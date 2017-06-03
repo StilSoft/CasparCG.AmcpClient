@@ -20,13 +20,13 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Query
     /// <summary>
     /// Get information about a template.
     /// </summary>
-    public class InfoTemplateCommand : AbstractInfoCommand<InfoTemplateCommandResponse>
+    public class InfoTemplateCommand : AbstractInfoCommandWithSubCommand<InfoTemplateCommandResponse>
     {
         // INFO
         // TEMPLATE
         // [template:string]
 
-        internal override string InfoCommandName { get; } = "TEMPLATE";
+        internal override string SubCommandName { get; } = "TEMPLATE";
 
         [Required]
         [IsValidFullName]

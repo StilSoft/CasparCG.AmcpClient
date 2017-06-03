@@ -19,7 +19,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Change the brightness of a layer.
     /// </summary>
-    public class MixerBrightnessSetCommand : AbstractMixerLayerCommand
+    public class MixerBrightnessSetCommand : AbstractMixerLayerCommandWithSubCommand
     {
         // MIXER
         // [video_channel:int]
@@ -40,7 +40,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     } 
         // }
 
-        internal override string MixerCommandName { get; } = "BRIGHTNESS";
+        internal override string SubCommandName { get; } = "BRIGHTNESS";
 
         [Required]
         [Range(0.0, 1.0)]

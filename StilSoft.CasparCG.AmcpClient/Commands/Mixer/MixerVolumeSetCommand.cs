@@ -19,7 +19,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Change the volume of a layer.
     /// </summary>
-    public class MixerVolumeSetCommand : AbstractMixerLayerCommand
+    public class MixerVolumeSetCommand : AbstractMixerLayerCommandWithSubCommand
     {
         // MIXER
         // [video_channel:int]
@@ -40,7 +40,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     } 
         // }
 
-        internal override string MixerCommandName { get; } = "VOLUME";
+        internal override string SubCommandName { get; } = "VOLUME";
 
         [Required]
         [Range(0.0, 10.0)]

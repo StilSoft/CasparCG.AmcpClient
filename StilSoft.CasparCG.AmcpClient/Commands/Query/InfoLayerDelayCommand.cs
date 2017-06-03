@@ -9,16 +9,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-using StilSoft.CasparCG.AmcpClient.CommandBuilder.Attributes;
 using StilSoft.CasparCG.AmcpClient.Commands.Query.Common.Response;
-using System.ComponentModel.DataAnnotations;
 
 namespace StilSoft.CasparCG.AmcpClient.Commands.Query
 {
     /// <summary>
     /// Get the current delay on a layer.
     /// </summary>
-    public class InfoLayerDelayCommand : AbstractChannelCommand<InfoLayerDelayCommandResponse>
+    public class InfoLayerDelayCommand : AbstractInfoLayerCommandWithSubCommand<InfoLayerDelayCommandResponse>
     {
         // INFO 
         // [video_channel:int]
@@ -29,22 +27,13 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Query
 
         internal override string CommandName { get; } = "INFO";
 
-        /// <summary>
-        /// Video layer.
-        /// </summary>
-        [Required]
-        [Range(0, 9999)]
-        [CommandParameter("-{0}", true)]
-        public int? Layer { get; set; }
-
-        [CommandParameter]
-        public string InfoCommandName { get; } = "DELAY";
+        internal override string SubCommandName { get; } = "DELAY";
 
 
         public InfoLayerDelayCommand(int? channel = null, int? layer = null)
         {
             Channel = channel;
             Layer = layer;
-        }
+        }       
     }
 }

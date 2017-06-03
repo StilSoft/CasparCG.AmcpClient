@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the mipmapping for a layer.
     /// </summary>
-    public class MixerMipmapGetCommand : AbstractMixerLayerCommand<MixerMipmapGetCommandResponse>
+    public class MixerMipmapGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerMipmapGetCommandResponse>
     {
         // MIXER 
         // [video_channel:int]
@@ -30,7 +30,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     |0
         // }
 
-        internal override string MixerCommandName { get; } = "MIPMAP";
+        internal override string SubCommandName { get; } = "MIPMAP";
 
 
         public MixerMipmapGetCommand(int? channel = null, int? layer = null)

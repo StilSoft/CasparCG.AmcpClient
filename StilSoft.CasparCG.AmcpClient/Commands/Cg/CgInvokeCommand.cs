@@ -17,7 +17,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
     /// <summary>
     /// Invoke a method/label on a template.
     /// </summary>
-    public class CgInvokeCommand : AbstractCgCommand
+    public class CgInvokeCommand : AbstractCgCommandWithSubCommandWithCgLayer
     {
         // CG
         // [video_channel:int]
@@ -29,7 +29,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
         // [cg_layer:int]
         // [method:string]
 
-        internal override string CgCommandName { get; } = "INVOKE";
+        internal override string SubCommandName { get; } = "INVOKE";
 
         [Required]
         [CommandParameter]

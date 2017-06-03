@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the blend mode for a layer.
     /// </summary>
-    public class MixerBlendGetCommand : AbstractMixerLayerCommand<MixerBlendGetCommandResponse>
+    public class MixerBlendGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerBlendGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // } 
         // BLEND 
 
-        internal override string MixerCommandName { get; } = "BLEND";
+        internal override string SubCommandName { get; } = "BLEND";
 
 
         public MixerBlendGetCommand(int? channel = null, int? layer = null)

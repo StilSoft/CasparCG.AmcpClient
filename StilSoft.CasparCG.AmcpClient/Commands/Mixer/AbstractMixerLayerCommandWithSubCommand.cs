@@ -9,24 +9,18 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
+using StilSoft.CasparCG.AmcpClient.Common;
 
 namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
 {
-    /// <summary>
-    /// Commit all deferred mixer transforms.
-    /// </summary>
-    public class MixerCommitCommand : AbstractMixerChannelCommandWithSubCommand
+    public abstract class AbstractMixerLayerCommandWithSubCommand : AbstractMixerLayerCommandWithSubCommand<AmcpResponse>
     {
-        // MIXER
-        // [video_channel:int]
-        // COMMIT 
 
-        internal override string SubCommandName { get; } = "COMMIT";
+    }
 
-
-        public MixerCommitCommand(int? channel = null)
-        {
-            Channel = channel;
-        }
+    public abstract class AbstractMixerLayerCommandWithSubCommand<TResponse> : AbstractLayerCommandWithSubCommand<TResponse>
+        where TResponse : AmcpResponse, new()
+    {
+        internal override string CommandName { get; } = "MIXER";
     }
 }

@@ -15,7 +15,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
     /// <summary>
     /// Remove all templates on a video layer.
     /// </summary>
-    public class CgClearCommand : AbstractCgCommandNoCgLayer
+    public class CgClearCommand : AbstractCgCommandWithSubCommandNoCgLayer
     {
         // CG
         // [video_channel:int]
@@ -25,7 +25,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
         // }
         // CLEAR
 
-        internal override string CgCommandName { get; } = "CLEAR";
+        internal override string SubCommandName { get; } = "CLEAR";
 
 
         public CgClearCommand(int? channel = null, int? layer = null)

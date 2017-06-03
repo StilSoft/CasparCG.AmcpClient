@@ -21,7 +21,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Enable chroma keying on a layer.
     /// </summary>
-    public class MixerChromaSetCommand : AbstractMixerLayerCommand
+    public class MixerChromaSetCommand : AbstractMixerLayerCommandWithSubCommand
     {
         // MIXER 
         // [video_channel:int]
@@ -52,7 +52,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     |0 linear
         // }
 
-        internal override string MixerCommandName { get; } = "CHROMA";
+        internal override string SubCommandName { get; } = "CHROMA";
 
         /// <summary>
         /// Enable or Disable chroma keying on a layer.

@@ -16,13 +16,13 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the volume of an entire channel.
     /// </summary>
-    public class MixerMasterVolumeGetCommand : AbstractMixerChannelCommand<MixerMasterVolumeGetCommandResponse>
+    public class MixerMasterVolumeGetCommand : AbstractMixerChannelCommandWithSubCommand<MixerMasterVolumeGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
         // MASTERVOLUME 
 
-        internal override string MixerCommandName { get; } = "MASTERVOLUME";
+        internal override string SubCommandName { get; } = "MASTERVOLUME";
 
 
         public MixerMasterVolumeGetCommand(int? channel = null)

@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the anchor point of a layer.
     /// </summary>
-    public class MixerAnchorGetCommand : AbstractMixerLayerCommand<MixerAnchorGetCommandResponse>
+    public class MixerAnchorGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerAnchorGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // } 
         // ANCHOR 
 
-        internal override string MixerCommandName { get; } = "ANCHOR";
+        internal override string SubCommandName { get; } = "ANCHOR";
 
 
         public MixerAnchorGetCommand(int? channel = null, int? layer = null)

@@ -17,7 +17,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
     /// <summary>
     /// Get information about a running template or the template host.
     /// </summary>
-    public class CgInfoCommand : AbstractCgCommandNoCgLayer
+    public class CgInfoCommand : AbstractCgCommandWithSubCommandNoCgLayer
     {
         // CG
         // [video_channel:int]
@@ -32,7 +32,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
 
         // TODO implement response
 
-        internal override string CgCommandName { get; } = "INFO";
+        internal override string SubCommandName { get; } = "INFO";
 
         [Range(0, 9999)]
         [CommandParameter(4)]

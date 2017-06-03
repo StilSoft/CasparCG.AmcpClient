@@ -19,7 +19,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Let a layer act as alpha for the one above.
     /// </summary>
-    public class MixerKeyerSetCommand : AbstractMixerLayerCommand
+    public class MixerKeyerSetCommand : AbstractMixerLayerCommandWithSubCommand
     {
         // MIXER
         // [video_channel:int]
@@ -33,7 +33,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     |0
         // }
 
-        internal override string MixerCommandName { get; } = "KEYER";
+        internal override string SubCommandName { get; } = "KEYER";
 
         [Required]
         [BooleanToString("1", "0")]

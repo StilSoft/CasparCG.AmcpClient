@@ -19,7 +19,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Thumbnail
     /// <summary>
     /// List thumbnails.
     /// </summary>
-    public class ThumbnailListCommand : AbstractThumbnailCommand<ThumbnailListCommandResponse>
+    public class ThumbnailListCommand : AbstractThumbnailCommandWithSubCommand<ThumbnailListCommandResponse>
     {
         // THUMBNAIL 
         // LIST 
@@ -27,7 +27,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Thumbnail
         //     [sub_directory:string]
         // }
 
-        internal override string ThumbnailCommandName { get; } = "LIST";
+        internal override string SubCommandName { get; } = "LIST";
 
         [IsValidPath]
         [WindowsToUnixPath]

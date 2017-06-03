@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the clipping viewport of a layer.
     /// </summary>
-    public class MixerClipGetCommand : AbstractMixerLayerCommand<MixerClipGetCommandResponse>
+    public class MixerClipGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerClipGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // } 
         // CLIP 
 
-        internal override string MixerCommandName { get; } = "CLIP";
+        internal override string SubCommandName { get; } = "CLIP";
 
 
         public MixerClipGetCommand(int? channel = null, int? layer = null)

@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the saturation of a layer.
     /// </summary>
-    public class MixerSaturationGetCommand : AbstractMixerLayerCommand<MixerSaturationGetCommandResponse>
+    public class MixerSaturationGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerSaturationGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // } 
         // SATURATION 
 
-        internal override string MixerCommandName { get; } = "SATURATION";
+        internal override string SubCommandName { get; } = "SATURATION";
 
 
         public MixerSaturationGetCommand(int? channel = null, int? layer = null)

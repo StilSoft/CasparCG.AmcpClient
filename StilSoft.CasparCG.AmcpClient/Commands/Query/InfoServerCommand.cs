@@ -16,11 +16,11 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Query
     /// <summary>
     /// Get detailed information about all channels.
     /// </summary>
-    public class InfoServerCommand : AbstractInfoCommand<InfoServerCommandResponse>
+    public class InfoServerCommand : AbstractInfoCommandWithSubCommand<InfoServerCommandResponse>
     {
         // INFO
         // SERVER
 
-        internal override string InfoCommandName { get; } = "SERVER";
+        internal override string SubCommandName { get; } = "SERVER";
     }
 }

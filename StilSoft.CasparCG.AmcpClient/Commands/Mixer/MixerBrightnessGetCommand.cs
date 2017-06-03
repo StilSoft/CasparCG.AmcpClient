@@ -16,7 +16,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Get the brightness of a layer.
     /// </summary>
-    public class MixerBrightnessGetCommand : AbstractMixerLayerCommand<MixerBrightnessGetCommandResponse>
+    public class MixerBrightnessGetCommand : AbstractMixerLayerCommandWithSubCommand<MixerBrightnessGetCommandResponse>
     {
         // MIXER
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         // } 
         // BRIGHTNESS 
 
-        internal override string MixerCommandName { get; } = "BRIGHTNESS";
+        internal override string SubCommandName { get; } = "BRIGHTNESS";
 
 
         public MixerBrightnessGetCommand(int? channel = null, int? layer = null)

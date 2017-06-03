@@ -15,7 +15,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
     /// <summary>
     /// Remove a template.
     /// </summary>
-    public class CgRemoveCommand : AbstractCgCommand
+    public class CgRemoveCommand : AbstractCgCommandWithSubCommandWithCgLayer
     {
         // CG
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
         // REMOVE
         // [cg_layer:int]
 
-        internal override string CgCommandName { get; } = "REMOVE";
+        internal override string SubCommandName { get; } = "REMOVE";
 
        
         public CgRemoveCommand(int? channel = null, int? layer = null, int? cgLayer = null)

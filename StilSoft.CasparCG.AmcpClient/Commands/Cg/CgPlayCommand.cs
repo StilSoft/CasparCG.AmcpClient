@@ -15,7 +15,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
     /// <summary>
     /// Play and display a template.
     /// </summary>
-    public class CgPlayCommand : AbstractCgCommand
+    public class CgPlayCommand : AbstractCgCommandWithSubCommandWithCgLayer
     {
         // CG
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
         // PLAY
         // [cg_layer:int]
 
-        internal override string CgCommandName { get; } = "PLAY";
+        internal override string SubCommandName { get; } = "PLAY";
 
 
         public CgPlayCommand(int? channel = null, int? layer = null, int? cgLayer = null)

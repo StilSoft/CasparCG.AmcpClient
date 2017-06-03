@@ -18,7 +18,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Adjust the perspective transform of a layer.
     /// </summary>
-    public class MixerPerspectiveSetCommand : AbstractMixerLayerCommand
+    public class MixerPerspectiveSetCommand : AbstractMixerLayerCommandWithSubCommand
     {
         // MIXER
         // [video_channel:int]
@@ -46,7 +46,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     } 
         // }
 
-        internal override string MixerCommandName { get; } = "PERSPECTIVE";
+        internal override string SubCommandName { get; } = "PERSPECTIVE";
 
         [Required]
         [CommandParameter]

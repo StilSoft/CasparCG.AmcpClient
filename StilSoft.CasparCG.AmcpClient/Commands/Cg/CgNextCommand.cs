@@ -15,7 +15,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
     /// <summary>
     /// Trigger a "continue" in a template.
     /// </summary>
-    public class CgNextCommand : AbstractCgCommand
+    public class CgNextCommand : AbstractCgCommandWithSubCommandWithCgLayer
     {
         // CG
         // [video_channel:int]
@@ -26,7 +26,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
         // NEXT
         // [cg_layer:int]
 
-        internal override string CgCommandName { get; } = "NEXT";
+        internal override string SubCommandName { get; } = "NEXT";
 
 
         public CgNextCommand(int? channel = null, int? layer = null, int? cgLayer = null)

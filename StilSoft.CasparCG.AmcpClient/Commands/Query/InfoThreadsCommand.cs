@@ -16,11 +16,11 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Query
     /// <summary>
     /// Lists all known threads in the server.
     /// </summary>
-    public class InfoThreadsCommand : AbstractInfoCommand<InfoThreadsCommandResponse>
+    public class InfoThreadsCommand : AbstractInfoCommandWithSubCommand<InfoThreadsCommandResponse>
     {
         // INFO
         // THREADS
 
-        internal override string InfoCommandName { get; } = "THREADS";
+        internal override string SubCommandName { get; } = "THREADS";
     }
 }

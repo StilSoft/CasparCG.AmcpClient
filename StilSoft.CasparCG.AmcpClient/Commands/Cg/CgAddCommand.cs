@@ -20,7 +20,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
     /// <summary>
     /// Prepare a template for displaying.
     /// </summary>
-    public class CgAddCommand : AbstractCgCommand
+    public class CgAddCommand : AbstractCgCommandWithSubCommandWithCgLayer
     {
         // CG
         // [video_channel:int]
@@ -36,7 +36,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Cg
         //     [data]
         // }
 
-        internal override string CgCommandName { get; } = "ADD";
+        internal override string SubCommandName { get; } = "ADD";
 
         [Required]
         [IsValidFullName]

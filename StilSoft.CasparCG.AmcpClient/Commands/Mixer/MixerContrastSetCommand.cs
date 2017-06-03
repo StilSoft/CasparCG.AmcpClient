@@ -19,7 +19,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
     /// <summary>
     /// Change the contrast of a layer.
     /// </summary>
-    public class MixerContrastSetCommand : AbstractMixerLayerCommand
+    public class MixerContrastSetCommand : AbstractMixerLayerCommandWithSubCommand
     {
         // MIXER
         // [video_channel:int]
@@ -40,7 +40,7 @@ namespace StilSoft.CasparCG.AmcpClient.Commands.Mixer
         //     } 
         // }
 
-        internal override string MixerCommandName { get; } = "CONTRAST";
+        internal override string SubCommandName { get; } = "CONTRAST";
 
         [Required]
         [Range(0.0, 1.0)]
