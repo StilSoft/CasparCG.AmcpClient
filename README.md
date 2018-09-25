@@ -1,3 +1,5 @@
+![alt text](https://ci.appveyor.com/api/projects/status/github/stilsoft/CasparCG.AmcpClient?svg=true&retina=true)
+
 # CasparCG AmcpClient
 CasparCG AmcpClient is .NET library for communication with [CasparCG Server](https://github.com/CasparCG/Server) via [AMCP protocol](http://casparcg.com/wiki/CasparCG_2.1_AMCP_Protocol).
 
