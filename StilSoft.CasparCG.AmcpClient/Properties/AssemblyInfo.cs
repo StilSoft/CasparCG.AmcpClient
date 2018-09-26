@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("StilSoft.CasparCG.AmcpClient")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription(".NET library for communication with CasparCG Server")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Stil Soft")]
 [assembly: AssemblyProduct("StilSoft.CasparCG.AmcpClient")]
