@@ -35,8 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="StilSoft.Communication.Tcp">
-      <HintPath>..\..\..\..\.nuget\packages\stilsoft.communication.tcp\2.0.2\lib\net45\StilSoft.Communication.Tcp.dll</HintPath>
+    <Reference Include="StilSoft.Communication.Tcp, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StilSoft.Communication.Tcp.2.0.3\lib\net45\StilSoft.Communication.Tcp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
